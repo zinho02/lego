@@ -60,6 +60,5 @@ require (
 	google.golang.org/api v0.20.0
 	gopkg.in/ns1/ns1-go.v2 v2.6.0
 	gopkg.in/square/go-jose.v2 v2.6.0
-	gopkg.in/square/go-jose.v2 v2.6.0
 	gopkg.in/yaml.v2 v2.4.0
 )
