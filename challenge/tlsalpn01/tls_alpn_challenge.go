@@ -1,7 +1,7 @@
 package tlsalpn01
 
 import (
-	"crypto/rsa"
+	"crypto/pqc"
 	"crypto/sha256"
 	"crypto/tls"
 	"crypto/x509/pkix"
@@ -98,7 +98,7 @@ func ChallengeBlocks(domain, keyAuth string) ([]byte, []byte, error) {
 		return nil, nil, err
 	}
 
-	rsaPrivateKey := tempPrivateKey.(*rsa.PrivateKey)
+	rsaPrivateKey := tempPrivateKey.(*pqc.PrivateKey)
 
 	// Generate the PEM certificate using the provided private key, domain, and extra extensions.
 	tempCertPEM, err := certcrypto.GeneratePemCert(rsaPrivateKey, domain, extensions)

@@ -3,8 +3,11 @@ package certcrypto
 import (
 	"bytes"
 	"crypto"
+	"crypto/pqc"
+	"crypto/pqc/dilithium"
 	"crypto/rand"
 	"crypto/rsa"
+	"fmt"
 	"testing"
 	"time"
 
@@ -13,7 +16,7 @@ import (
 )
 
 func TestGeneratePrivateKey(t *testing.T) {
-	key, err := GeneratePrivateKey(RSA2048)
+	key, err := GeneratePrivateKey(Dilithium5)
 	require.NoError(t, err, "Error generating private key")
 
 	assert.NotNil(t, key)
@@ -103,10 +106,10 @@ func TestGenerateCSR(t *testing.T) {
 }
 
 func TestPEMEncode(t *testing.T) {
-	buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
+	//buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
 
-	reader := MockRandReader{b: buf}
-	key, err := rsa.GenerateKey(reader, 32)
+	//reader := MockRandReader{b: buf}
+	key, err := dilithium.GenerateKeyDilithium5()
 	require.NoError(t, err, "Error generating private key")
 
 	data := PEMEncode(key)
@@ -115,11 +118,11 @@ func TestPEMEncode(t *testing.T) {
 }
 
 func TestParsePEMCertificate(t *testing.T) {
-	privateKey, err := GeneratePrivateKey(RSA2048)
+	privateKey, err := GeneratePrivateKey(Dilithium5)
 	require.NoError(t, err, "Error generating private key")
 
 	expiration := time.Now().Add(365).Round(time.Second)
-	certBytes, err := generateDerCert(privateKey.(*rsa.PrivateKey), expiration, "test.com", nil)
+	certBytes, err := generateDerCert(privateKey.(*pqc.PrivateKey), expiration, "test.com", nil)
 	require.NoError(t, err, "Error generating cert")
 
 	buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
@@ -135,6 +138,8 @@ func TestParsePEMCertificate(t *testing.T) {
 	// A PEM encoded certificate should work ok.
 	pemCert := PEMEncode(DERCertificateBytes(certBytes))
 	cert, err = ParsePEMCertificate(pemCert)
+	test := string(pemCert)
+	fmt.Println(test)
 	require.NoError(t, err)
 
 	assert.Equal(t, expiration.UTC(), cert.NotAfter)

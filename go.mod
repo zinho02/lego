@@ -41,6 +41,7 @@ require (
 	github.com/nrdcg/namesilo v0.2.1
 	github.com/nrdcg/porkbun v0.1.1
 	github.com/onsi/gomega v1.14.0 // indirect
+	github.com/open-quantum-safe/liboqs-go v0.0.0-20210711155910-e7325d463abc // indirect
 	github.com/oracle/oci-go-sdk v24.3.0+incompatible
 	github.com/ovh/go-ovh v1.1.0
 	github.com/pquerna/otp v1.3.0
@@ -58,6 +59,7 @@ require (
 	golang.org/x/time v0.0.0-20210611083556-38a9dc6acbc6
 	google.golang.org/api v0.20.0
 	gopkg.in/ns1/ns1-go.v2 v2.6.0
+	gopkg.in/square/go-jose.v2 v2.6.0
 	gopkg.in/square/go-jose.v2 v2.6.0
 	gopkg.in/yaml.v2 v2.4.0
 )

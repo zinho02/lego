@@ -4,6 +4,7 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/elliptic"
+	"crypto/pqc"
 	"crypto/rsa"
 	"encoding/base64"
 	"fmt"
@@ -39,6 +40,8 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 	switch k := j.privKey.(type) {
 	case *rsa.PrivateKey:
 		alg = jose.RS256
+	case *pqc.PrivateKey:
+		alg = jose.HS512
 	case *ecdsa.PrivateKey:
 		if k.Curve == elliptic.P256() {
 			alg = jose.ES256
@@ -112,6 +115,8 @@ func (j *JWS) GetKeyAuthorization(token string) (string, error) {
 	case *ecdsa.PrivateKey:
 		publicKey = k.Public()
 	case *rsa.PrivateKey:
+		publicKey = k.Public()
+	case *pqc.PrivateKey:
 		publicKey = k.Public()
 	}
 
