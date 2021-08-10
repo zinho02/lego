@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 	"github.com/namedotcom/go/namecom"
+	"github.com/zinho02/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/platform/config/env"
 )
 
 // according to https://www.name.com/api-docs/DNS#CreateRecord

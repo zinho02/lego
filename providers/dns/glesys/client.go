@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-acme/lego/v4/log"
+	"github.com/zinho02/lego/v4/log"
 )
 
 // types for JSON method calls, parameters, and responses

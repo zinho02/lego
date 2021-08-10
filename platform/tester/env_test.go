@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/assert"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 const (

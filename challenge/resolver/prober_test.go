@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/go-acme/lego/v4/acme"
-	"github.com/go-acme/lego/v4/challenge"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/acme"
+	"github.com/zinho02/lego/v4/challenge"
 )
 
 func TestProber_Solve(t *testing.T) {

@@ -10,14 +10,14 @@ import (
 	"os"
 	"testing"
 
-	"github.com/go-acme/lego/v4/certificate"
-	"github.com/go-acme/lego/v4/challenge/http01"
-	"github.com/go-acme/lego/v4/challenge/tlsalpn01"
-	"github.com/go-acme/lego/v4/e2e/loader"
-	"github.com/go-acme/lego/v4/lego"
-	"github.com/go-acme/lego/v4/registration"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/certificate"
+	"github.com/zinho02/lego/v4/challenge/http01"
+	"github.com/zinho02/lego/v4/challenge/tlsalpn01"
+	"github.com/zinho02/lego/v4/e2e/loader"
+	"github.com/zinho02/lego/v4/lego"
+	"github.com/zinho02/lego/v4/registration"
 )
 
 var load = loader.EnvLoader{

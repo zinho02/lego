@@ -8,10 +8,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 	lw "github.com/liquidweb/liquidweb-go/client"
 	"github.com/liquidweb/liquidweb-go/network"
+	"github.com/zinho02/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/platform/config/env"
 )
 
 const defaultBaseURL = "https://api.stormondemand.com"

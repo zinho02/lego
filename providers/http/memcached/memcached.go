@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"path"
 
-	"github.com/go-acme/lego/v4/challenge/http01"
 	"github.com/rainycape/memcache"
+	"github.com/zinho02/lego/v4/challenge/http01"
 )
 
 // HTTPProvider implements HTTPProvider for `http-01` challenge.

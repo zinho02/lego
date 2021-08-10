@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/oracle/oci-go-sdk/common"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 const envDomain = envNamespace + "DOMAIN"

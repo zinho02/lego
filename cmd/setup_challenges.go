@@ -5,16 +5,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge"
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/challenge/http01"
-	"github.com/go-acme/lego/v4/challenge/tlsalpn01"
-	"github.com/go-acme/lego/v4/lego"
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/providers/dns"
-	"github.com/go-acme/lego/v4/providers/http/memcached"
-	"github.com/go-acme/lego/v4/providers/http/webroot"
 	"github.com/urfave/cli"
+	"github.com/zinho02/lego/v4/challenge"
+	"github.com/zinho02/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/challenge/http01"
+	"github.com/zinho02/lego/v4/challenge/tlsalpn01"
+	"github.com/zinho02/lego/v4/lego"
+	"github.com/zinho02/lego/v4/log"
+	"github.com/zinho02/lego/v4/providers/dns"
+	"github.com/zinho02/lego/v4/providers/http/memcached"
+	"github.com/zinho02/lego/v4/providers/http/webroot"
 )
 
 func setupChallenges(ctx *cli.Context, client *lego.Client) {

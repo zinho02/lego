@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/go-acme/lego/v4/log"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/log"
 )
 
 func TestDNSProvider_Present(t *testing.T) {

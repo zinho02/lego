@@ -1,6 +1,8 @@
-module github.com/go-acme/lego/v4
+module github.com/zinho02/lego/v4
 
 go 1.15
+
+replace gopkg.in/square/go-jose.v2 => ../go-jose
 
 // github.com/exoscale/egoscale v1.19.0 => It is an error, please don't use it.
 // github.com/linode/linodego v1.0.0 => It is an error, please don't use it.
@@ -52,7 +54,8 @@ require (
 	github.com/urfave/cli v1.22.5
 	github.com/vinyldns/go-vinyldns v0.0.0-20200917153823-148a5f6b8f14
 	github.com/vultr/govultr/v2 v2.6.0
-	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
+	github.com/zinho02/go-jose v2.6.0+incompatible // indirect
+	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
 	golang.org/x/time v0.0.0-20210611083556-38a9dc6acbc6

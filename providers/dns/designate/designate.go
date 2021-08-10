@@ -9,13 +9,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack"
 	"github.com/gophercloud/gophercloud/openstack/dns/v2/recordsets"
 	"github.com/gophercloud/gophercloud/openstack/dns/v2/zones"
 	"github.com/gophercloud/utils/openstack/clientconfig"
+	"github.com/zinho02/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/platform/config/env"
 )
 
 // Environment variables names.

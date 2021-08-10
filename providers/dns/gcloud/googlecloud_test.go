@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/dns/v1"

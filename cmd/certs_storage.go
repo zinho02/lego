@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-acme/lego/v4/certcrypto"
-	"github.com/go-acme/lego/v4/certificate"
-	"github.com/go-acme/lego/v4/log"
 	"github.com/urfave/cli"
+	"github.com/zinho02/lego/v4/certcrypto"
+	"github.com/zinho02/lego/v4/certificate"
+	"github.com/zinho02/lego/v4/log"
 	"golang.org/x/net/idna"
 )
 

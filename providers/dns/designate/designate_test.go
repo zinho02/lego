@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/gophercloud/utils/openstack/clientconfig"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
 	"gopkg.in/yaml.v2"
 )
 

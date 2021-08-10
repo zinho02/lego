@@ -8,12 +8,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/go-acme/lego/v4/acme"
-	"github.com/go-acme/lego/v4/acme/api"
-	"github.com/go-acme/lego/v4/challenge"
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/platform/wait"
 	"github.com/miekg/dns"
+	"github.com/zinho02/lego/v4/acme"
+	"github.com/zinho02/lego/v4/acme/api"
+	"github.com/zinho02/lego/v4/challenge"
+	"github.com/zinho02/lego/v4/log"
+	"github.com/zinho02/lego/v4/platform/wait"
 )
 
 const (

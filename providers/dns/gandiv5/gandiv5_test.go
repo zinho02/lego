@@ -8,9 +8,9 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/log"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 var envTest = tester.NewEnvTest(EnvAPIKey)

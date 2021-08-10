@@ -3,10 +3,10 @@ package luadns
 import (
 	"testing"
 
-	"github.com/go-acme/lego/v4/platform/tester"
-	"github.com/go-acme/lego/v4/providers/dns/luadns/internal"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
+	"github.com/zinho02/lego/v4/providers/dns/luadns/internal"
 )
 
 const envDomain = envNamespace + "DOMAIN"

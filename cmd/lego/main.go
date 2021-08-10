@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/go-acme/lego/v4/cmd"
-	"github.com/go-acme/lego/v4/log"
 	"github.com/urfave/cli"
+	"github.com/zinho02/lego/v4/cmd"
+	"github.com/zinho02/lego/v4/log"
 )
 
 var version = "dev"

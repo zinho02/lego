@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/suite"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 type OTCSuite struct {

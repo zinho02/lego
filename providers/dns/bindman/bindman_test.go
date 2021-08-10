@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	bindmanClient "github.com/labbsr0x/bindman-dns-webhook/src/client"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 const envDomain = envNamespace + "DOMAIN"

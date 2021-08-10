@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/transip/gotransip/v6/domain"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 const envDomain = envNamespace + "DOMAIN"

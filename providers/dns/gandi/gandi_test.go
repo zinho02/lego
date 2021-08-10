@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/go-acme/lego/v4/platform/tester"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 var envTest = tester.NewEnvTest(EnvAPIKey)

@@ -5,7 +5,7 @@ import (
 	"sync"
 
 	"github.com/cloudflare/cloudflare-go"
-	"github.com/go-acme/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/challenge/dns01"
 )
 
 type metaClient struct {

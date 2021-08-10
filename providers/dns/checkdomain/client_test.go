@@ -10,9 +10,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/zinho02/lego/v4/challenge/dns01"
 )
 
 func setupTestProvider(t *testing.T) (*DNSProvider, *http.ServeMux) {

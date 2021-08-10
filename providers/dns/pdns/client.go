@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
 	"github.com/miekg/dns"
+	"github.com/zinho02/lego/v4/challenge/dns01"
 )
 
 type Record struct {

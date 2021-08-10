@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/go-acme/lego/v4/challenge/dns01"
-	"github.com/go-acme/lego/v4/platform/config/env"
+	"github.com/zinho02/lego/v4/challenge/dns01"
+	"github.com/zinho02/lego/v4/platform/config/env"
 )
 
 const (

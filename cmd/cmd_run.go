@@ -6,11 +6,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/go-acme/lego/v4/certificate"
-	"github.com/go-acme/lego/v4/lego"
-	"github.com/go-acme/lego/v4/log"
-	"github.com/go-acme/lego/v4/registration"
 	"github.com/urfave/cli"
+	"github.com/zinho02/lego/v4/certificate"
+	"github.com/zinho02/lego/v4/lego"
+	"github.com/zinho02/lego/v4/log"
+	"github.com/zinho02/lego/v4/registration"
 )
 
 func createRun() cli.Command {
