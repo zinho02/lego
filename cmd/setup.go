@@ -76,7 +76,7 @@ func getKeyType(ctx *cli.Context) certcrypto.KeyType {
 		return certcrypto.EC384
 	case "DILITHIUM5":
 		return certcrypto.Dilithium5
-	case "FALCON1024":
+	case "FALCON-1024":
 		return certcrypto.Falcon1024
 	}
 

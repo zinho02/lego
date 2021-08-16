@@ -29,7 +29,7 @@ const (
 	RSA4096    = KeyType("4096")
 	RSA8192    = KeyType("8192")
 	Dilithium5 = KeyType("dilithium5")
-	Falcon1024 = KeyType("falcon1024")
+	Falcon1024 = KeyType("falcon-1024")
 )
 
 const (

@@ -43,14 +43,14 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 		switch k.AlgName {
 		case "dilithium5":
 			alg = jose.Dilithium5
-		case "falcon1024":
+		case "falcon-1024":
 			alg = jose.Falcon1024
 		}
 	case *pqc.PrivateKey:
 		switch k.AlgName {
 		case "dilithium5":
 			alg = jose.Dilithium5
-		case "falcon1024":
+		case "falcon-1024":
 			alg = jose.Falcon1024
 		}
 	case *rsa.PrivateKey:
