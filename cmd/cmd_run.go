@@ -1,9 +1,7 @@
 package cmd
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/urfave/cli"
@@ -110,15 +108,17 @@ func handleTOS(ctx *cli.Context, client *lego.Client) bool {
 		return true
 	}
 
-	reader := bufio.NewReader(os.Stdin)
+	// reader := bufio.NewReader(os.Stdin)
 	log.Printf("Please review the TOS at %s", client.GetToSURL())
 
 	for {
 		fmt.Println("Do you accept the TOS? Y/n")
-		text, err := reader.ReadString('\n')
-		if err != nil {
-			log.Fatalf("Could not read from console: %v", err)
-		}
+		// text, err := reader.ReadString('\n')
+		// if err != nil {
+		// 	log.Fatalf("Could not read from console: %v", err)
+		// }
+
+		text := "Y"
 
 		text = strings.Trim(text, "\r\n")
 		switch text {

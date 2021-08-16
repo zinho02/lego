@@ -1,8 +1,7 @@
 package api
 
 import (
-	"crypto/rand"
-	"crypto/rsa"
+	"crypto/pqc"
 	"encoding/pem"
 	"net/http"
 	"testing"
@@ -93,7 +92,7 @@ func TestCertificateService_Get_issuerRelUp(t *testing.T) {
 		}
 	})
 
-	key, err := rsa.GenerateKey(rand.Reader, 2048)
+	key, err := pqc.GenerateKey("dilithium5")
 	require.NoError(t, err, "Could not generate test key")
 
 	core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
@@ -116,7 +115,7 @@ func TestCertificateService_Get_embeddedIssuer(t *testing.T) {
 		}
 	})
 
-	key, err := rsa.GenerateKey(rand.Reader, 2048)
+	key, err := pqc.GenerateKey("dilithium5")
 	require.NoError(t, err, "Could not generate test key")
 
 	core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)

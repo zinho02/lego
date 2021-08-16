@@ -5,6 +5,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/elliptic"
+	"crypto/pqc"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -22,11 +23,13 @@ import (
 
 // Constants for all key types we support.
 const (
-	EC256   = KeyType("P256")
-	EC384   = KeyType("P384")
-	RSA2048 = KeyType("2048")
-	RSA4096 = KeyType("4096")
-	RSA8192 = KeyType("8192")
+	EC256      = KeyType("P256")
+	EC384      = KeyType("P384")
+	RSA2048    = KeyType("2048")
+	RSA4096    = KeyType("4096")
+	RSA8192    = KeyType("8192")
+	Dilithium5 = KeyType("dilithium5")
+	Falcon1024 = KeyType("falcon1024")
 )
 
 const (
@@ -96,7 +99,7 @@ func ParsePEMPrivateKey(key []byte) (crypto.PrivateKey, error) {
 
 	if key, err := x509.ParsePKCS8PrivateKey(keyBlockDER.Bytes); err == nil {
 		switch key := key.(type) {
-		case *rsa.PrivateKey, *ecdsa.PrivateKey, ed25519.PrivateKey:
+		case *rsa.PrivateKey, *ecdsa.PrivateKey, ed25519.PrivateKey, *pqc.PrivateKey:
 			return key, nil
 		default:
 			return nil, fmt.Errorf("found unknown private key type in PKCS#8 wrapping: %T", key)
@@ -122,6 +125,8 @@ func GeneratePrivateKey(keyType KeyType) (crypto.PrivateKey, error) {
 		return rsa.GenerateKey(rand.Reader, 4096)
 	case RSA8192:
 		return rsa.GenerateKey(rand.Reader, 8192)
+	case Dilithium5:
+		return pqc.GenerateKey("dilithium5")
 	}
 
 	return nil, fmt.Errorf("invalid KeyType: %s", keyType)
@@ -150,6 +155,9 @@ func PEMEncode(data interface{}) []byte {
 func PEMBlock(data interface{}) *pem.Block {
 	var pemBlock *pem.Block
 	switch key := data.(type) {
+	case *pqc.PrivateKey:
+		keyBytes, _ := x509.MarshalPKCS8PrivateKey(key)
+		pemBlock = &pem.Block{Type: "PRIVATE KEY", Bytes: keyBytes}
 	case *ecdsa.PrivateKey:
 		keyBytes, _ := x509.MarshalECPrivateKey(key)
 		pemBlock = &pem.Block{Type: "EC PRIVATE KEY", Bytes: keyBytes}
@@ -244,7 +252,7 @@ func containsSAN(domains []string, sanName string) bool {
 	return false
 }
 
-func GeneratePemCert(privateKey *rsa.PrivateKey, domain string, extensions []pkix.Extension) ([]byte, error) {
+func GeneratePemCert(privateKey *pqc.PrivateKey, domain string, extensions []pkix.Extension) ([]byte, error) {
 	derBytes, err := generateDerCert(privateKey, time.Time{}, domain, extensions)
 	if err != nil {
 		return nil, err
@@ -253,7 +261,7 @@ func GeneratePemCert(privateKey *rsa.PrivateKey, domain string, extensions []pki
 	return pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: derBytes}), nil
 }
 
-func generateDerCert(privateKey *rsa.PrivateKey, expiration time.Time, domain string, extensions []pkix.Extension) ([]byte, error) {
+func generateDerCert(privateKey *pqc.PrivateKey, expiration time.Time, domain string, extensions []pkix.Extension) ([]byte, error) {
 	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
 	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
 	if err != nil {

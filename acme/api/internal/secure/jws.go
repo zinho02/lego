@@ -4,10 +4,12 @@ import (
 	"crypto"
 	"crypto/ecdsa"
 	"crypto/elliptic"
+	"crypto/pqc"
 	"crypto/rsa"
 	"encoding/base64"
 	"fmt"
 
+	"github.com/zinho02/go-jose"
 	"github.com/zinho02/lego/v4/acme/api/internal/nonces"
 	jose "gopkg.in/square/go-jose.v2"
 )
@@ -37,6 +39,20 @@ func (j *JWS) SetKid(kid string) {
 func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, error) {
 	var alg jose.SignatureAlgorithm
 	switch k := j.privKey.(type) {
+	case pqc.PrivateKey:
+		switch k.AlgName {
+		case "dilithium5":
+			alg = jose.Dilithium5
+		case "falcon1024":
+			alg = jose.Falcon1024
+		}
+	case *pqc.PrivateKey:
+		switch k.AlgName {
+		case "dilithium5":
+			alg = jose.Dilithium5
+		case "falcon1024":
+			alg = jose.Falcon1024
+		}
 	case *rsa.PrivateKey:
 		alg = jose.RS256
 	case *ecdsa.PrivateKey:
@@ -109,6 +125,8 @@ func (j *JWS) SignEABContent(url, kid string, hmac []byte) (*jose.JSONWebSignatu
 func (j *JWS) GetKeyAuthorization(token string) (string, error) {
 	var publicKey crypto.PublicKey
 	switch k := j.privKey.(type) {
+	case *pqc.PrivateKey:
+		publicKey = k.Public()
 	case *ecdsa.PrivateKey:
 		publicKey = k.Public()
 	case *rsa.PrivateKey:

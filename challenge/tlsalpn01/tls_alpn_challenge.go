@@ -1,7 +1,7 @@
 package tlsalpn01
 
 import (
-	"crypto/rsa"
+	"crypto/pqc"
 	"crypto/sha256"
 	"crypto/tls"
 	"crypto/x509/pkix"
@@ -92,24 +92,24 @@ func ChallengeBlocks(domain, keyAuth string) ([]byte, []byte, error) {
 		},
 	}
 
-	// Generate a new RSA key for the certificates.
-	tempPrivateKey, err := certcrypto.GeneratePrivateKey(certcrypto.RSA2048)
+	// Generate a new PQC key for the certificates.
+	tempPrivateKey, err := certcrypto.GeneratePrivateKey(certcrypto.Dilithium5)
 	if err != nil {
 		return nil, nil, err
 	}
 
-	rsaPrivateKey := tempPrivateKey.(*rsa.PrivateKey)
+	pqcPrivateKey := tempPrivateKey.(*pqc.PrivateKey)
 
 	// Generate the PEM certificate using the provided private key, domain, and extra extensions.
-	tempCertPEM, err := certcrypto.GeneratePemCert(rsaPrivateKey, domain, extensions)
+	tempCertPEM, err := certcrypto.GeneratePemCert(pqcPrivateKey, domain, extensions)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	// Encode the private key into a PEM format. We'll need to use it to generate the x509 keypair.
-	rsaPrivatePEM := certcrypto.PEMEncode(rsaPrivateKey)
+	pqcPrivatePEM := certcrypto.PEMEncode(pqcPrivateKey)
 
-	return tempCertPEM, rsaPrivatePEM, nil
+	return tempCertPEM, pqcPrivatePEM, nil
 }
 
 // ChallengeCert returns a certificate with the acmeValidation-v1 extension

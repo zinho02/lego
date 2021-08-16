@@ -215,6 +215,8 @@ func loadPrivateKey(file string) (crypto.PrivateKey, error) {
 	keyBlock, _ := pem.Decode(keyBytes)
 
 	switch keyBlock.Type {
+	case "PRIVATE KEY":
+		return x509.ParsePKCS8PrivateKey(keyBlock.Bytes)
 	case "RSA PRIVATE KEY":
 		return x509.ParsePKCS1PrivateKey(keyBlock.Bytes)
 	case "EC PRIVATE KEY":

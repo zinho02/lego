@@ -1,8 +1,7 @@
 package api
 
 import (
-	"crypto/rand"
-	"crypto/rsa"
+	"crypto/pqc"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -20,7 +19,7 @@ func TestOrderService_New(t *testing.T) {
 	defer tearDown()
 
 	// small value keeps test fast
-	privateKey, errK := rsa.GenerateKey(rand.Reader, 512)
+	privateKey, errK := pqc.GenerateKey("dilithium5")
 	require.NoError(t, errK, "Could not generate test key")
 
 	mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +65,7 @@ func TestOrderService_New(t *testing.T) {
 	assert.Equal(t, expected, order)
 }
 
-func readSignedBody(r *http.Request, privateKey *rsa.PrivateKey) ([]byte, error) {
+func readSignedBody(r *http.Request, privateKey *pqc.PrivateKey) ([]byte, error) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return nil, err
@@ -79,7 +78,7 @@ func readSignedBody(r *http.Request, privateKey *rsa.PrivateKey) ([]byte, error)
 
 	body, err := jws.Verify(&jose.JSONWebKey{
 		Key:       privateKey.Public(),
-		Algorithm: "RSA",
+		Algorithm: "Dilithium5",
 	})
 	if err != nil {
 		return nil, err
