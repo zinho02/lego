@@ -127,6 +127,8 @@ func GeneratePrivateKey(keyType KeyType) (crypto.PrivateKey, error) {
 		return rsa.GenerateKey(rand.Reader, 8192)
 	case Dilithium5:
 		return pqc.GenerateKey("dilithium5")
+	case Falcon1024:
+		return pqc.GenerateKey("falcon-1024")
 	}
 
 	return nil, fmt.Errorf("invalid KeyType: %s", keyType)

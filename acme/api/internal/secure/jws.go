@@ -9,7 +9,6 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"github.com/zinho02/go-jose"
 	"github.com/zinho02/lego/v4/acme/api/internal/nonces"
 	jose "gopkg.in/square/go-jose.v2"
 )
