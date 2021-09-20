@@ -110,6 +110,42 @@ func getKeyType(ctx *cli.Context) certcrypto.KeyType {
 		return certcrypto.SphincsPlusSHAKE256256sRobust
 	case "SPHINCS+-SHAKE256-256F-ROBUST":
 		return certcrypto.SphincsPlusSHAKE256256fRobust
+	case "DILITHIUM2":
+		return certcrypto.Dilithium2
+	case "DILITHIUM2-AES":
+		return certcrypto.Dilithium2AES
+	case "FALCON-512":
+		return certcrypto.Falcon512
+	case "RAINBOW-I-CLASSIC":
+		return certcrypto.RainbowIClassic
+	case "RAINBOW-I-CIRCUMZENITHAL":
+		return certcrypto.RainbowICircumzenithal
+	case "RAINBOW-I-COMPRESSED":
+		return certcrypto.RainbowICompressed
+	case "SPHINCS+-HARAKA-128S-SIMPLE":
+		return certcrypto.SphincsPlusHaraka128sSimple
+	case "SPHINCS+-HARAKA-128F-SIMPLE":
+		return certcrypto.SphincsPlusHaraka128fSimple
+	case "SPHINCS+-HARAKA-128S-ROBUST":
+		return certcrypto.SphincsPlusHaraka128sRobust
+	case "SPHINCS+-HARAKA-128F-ROBUST":
+		return certcrypto.SphincsPlusHaraka128fRobust
+	case "SPHINCS+-SHA256-128S-SIMPLE":
+		return certcrypto.SphincsPlusSHA256128sSimple
+	case "SPHINCS+-SHA256-128F-SIMPLE":
+		return certcrypto.SphincsPlusSHA256128fSimple
+	case "SPHINCS+-SHA256-128S-ROBUST":
+		return certcrypto.SphincsPlusSHA256128sRobust
+	case "SPHINCS+-SHA256-128F-ROBUST":
+		return certcrypto.SphincsPlusSHA256128fRobust
+	case "SPHINCS+-SHAKE256-128S-SIMPLE":
+		return certcrypto.SphincsPlusSHAKE256128sSimple
+	case "SPHINCS+-SHAKE256-128F-SIMPLE":
+		return certcrypto.SphincsPlusSHAKE256128fSimple
+	case "SPHINCS+-SHAKE256-128S-ROBUST":
+		return certcrypto.SphincsPlusSHAKE256128sRobust
+	case "SPHINCS+-SHAKE256-128F-ROBUST":
+		return certcrypto.SphincsPlusSHAKE256128fRobust
 	}
 
 	log.Fatalf("Unsupported KeyType: %s", keyType)

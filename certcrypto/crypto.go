@@ -46,6 +46,24 @@ const (
 	SphincsPlusSHAKE256256fSimple = KeyType("sphincs+-shake256-256f-simple")
 	SphincsPlusSHAKE256256sRobust = KeyType("sphincs+-shake256-256s-robust")
 	SphincsPlusSHAKE256256fRobust = KeyType("sphincs+-shake256-256f-robust")
+	Dilithium2                    = KeyType("dilithium2")
+	Dilithium2AES                 = KeyType("dilithium2-aes")
+	Falcon512                     = KeyType("falcon-512")
+	RainbowIClassic               = KeyType("rainbow-i-classic")
+	RainbowICircumzenithal        = KeyType("rainbow-i-circumzenithal")
+	RainbowICompressed            = KeyType("rainbow-i-compressed")
+	SphincsPlusHaraka128sSimple   = KeyType("sphincs+-haraka-128s-simple")
+	SphincsPlusHaraka128fSimple   = KeyType("sphincs+-haraka-128f-simple")
+	SphincsPlusHaraka128sRobust   = KeyType("sphincs+-haraka-128s-robust")
+	SphincsPlusHaraka128fRobust   = KeyType("sphincs+-haraka-128f-robust")
+	SphincsPlusSHA256128fSimple   = KeyType("sphincs+-sha256-128s-simple")
+	SphincsPlusSHA256128sSimple   = KeyType("sphincs+-sha256-128f-simple")
+	SphincsPlusSHA256128sRobust   = KeyType("sphincs+-sha256-128s-robust")
+	SphincsPlusSHA256128fRobust   = KeyType("sphincs+-sha256-128f-robust")
+	SphincsPlusSHAKE256128sSimple = KeyType("sphincs+-shake256-128s-simple")
+	SphincsPlusSHAKE256128fSimple = KeyType("sphincs+-shake256-128f-simple")
+	SphincsPlusSHAKE256128sRobust = KeyType("sphincs+-shake256-128s-robust")
+	SphincsPlusSHAKE256128fRobust = KeyType("sphincs+-shake256-128f-robust")
 )
 
 const (
@@ -177,6 +195,42 @@ func GeneratePrivateKey(keyType KeyType) (crypto.PrivateKey, error) {
 		return pqc.GenerateKey("sphincs+-shake256-256s-robust")
 	case SphincsPlusSHAKE256256fRobust:
 		return pqc.GenerateKey("sphincs+-shake256-256f-robust")
+	case Dilithium2:
+		return pqc.GenerateKey("dilithium2")
+	case Dilithium2AES:
+		return pqc.GenerateKey("dilithium2-aes")
+	case Falcon512:
+		return pqc.GenerateKey("falcon-512")
+	case RainbowIClassic:
+		return pqc.GenerateKey("rainbow-i-classic")
+	case RainbowICircumzenithal:
+		return pqc.GenerateKey("rainbow-i-circumzenithal")
+	case RainbowICompressed:
+		return pqc.GenerateKey("rainbow-i-compressed")
+	case SphincsPlusHaraka128sSimple:
+		return pqc.GenerateKey("sphincs+-haraka-128s-simple")
+	case SphincsPlusHaraka128fSimple:
+		return pqc.GenerateKey("sphincs+-haraka-128f-simple")
+	case SphincsPlusHaraka128sRobust:
+		return pqc.GenerateKey("sphincs+-haraka-128s-robust")
+	case SphincsPlusHaraka128fRobust:
+		return pqc.GenerateKey("sphincs+-haraka-128f-robust")
+	case SphincsPlusSHA256128fSimple:
+		return pqc.GenerateKey("sphincs+-sha256-128s-simple")
+	case SphincsPlusSHA256128sSimple:
+		return pqc.GenerateKey("sphincs+-sha256-128f-simple")
+	case SphincsPlusSHA256128sRobust:
+		return pqc.GenerateKey("sphincs+-sha256-128s-robust")
+	case SphincsPlusSHA256128fRobust:
+		return pqc.GenerateKey("sphincs+-sha256-128f-robust")
+	case SphincsPlusSHAKE256128sSimple:
+		return pqc.GenerateKey("sphincs+-shake256-128s-simple")
+	case SphincsPlusSHAKE256128fSimple:
+		return pqc.GenerateKey("sphincs+-shake256-128f-simple")
+	case SphincsPlusSHAKE256128sRobust:
+		return pqc.GenerateKey("sphincs+-shake256-128s-robust")
+	case SphincsPlusSHAKE256128fRobust:
+		return pqc.GenerateKey("sphincs+-shake256-128f-robust")
 	}
 
 	return nil, fmt.Errorf("invalid KeyType: %s", keyType)

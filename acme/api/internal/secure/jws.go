@@ -63,9 +63,9 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 		case "sphincs+-sha256-256f-simple":
 			alg = jose.SphincsPlusSHA256256fSimple
 		case "sphincs+-sha256-256s-robust":
-			alg = jose.SphincsPlusHaraka256sRobust
+			alg = jose.SphincsPlusSHA256256sRobust
 		case "sphincs+-sha256-256f-robust":
-			alg = jose.SphincsPlusHaraka256fRobust
+			alg = jose.SphincsPlusSHA256256fRobust
 		case "sphincs+-shake256-256s-simple":
 			alg = jose.SphincsPlusSHAKE256256sSimple
 		case "sphincs+-shake256-256f-simple":
@@ -74,6 +74,40 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 			alg = jose.SphincsPlusSHAKE256256sRobust
 		case "sphincs+-shake256-256f-robust":
 			alg = jose.SphincsPlusSHAKE256256fRobust
+		case "dilithium2":
+			alg = jose.Dilithium2
+		case "dilithium2-aes":
+			alg = jose.Dilithium2AES
+		case "rainbow-i-classic":
+			alg = jose.RainbowIClassic
+		case "rainbow-i-circumzenithal":
+			alg = jose.RainbowICircumzenithal
+		case "rainbow-i-compressed":
+			alg = jose.RainbowICompressed
+		case "sphincs+-haraka-128s-simple":
+			alg = jose.SphincsPlusHaraka128sSimple
+		case "sphincs+-haraka-128f-simple":
+			alg = jose.SphincsPlusHaraka128fSimple
+		case "sphincs+-haraka-128s-robust":
+			alg = jose.SphincsPlusHaraka128sRobust
+		case "sphincs+-haraka-128f-robust":
+			alg = jose.SphincsPlusHaraka128fRobust
+		case "sphincs+-sha256-128s-simple":
+			alg = jose.SphincsPlusSHA256128sSimple
+		case "sphincs+-sha256-128f-simple":
+			alg = jose.SphincsPlusSHA256128fSimple
+		case "sphincs+-sha256-128s-robust":
+			alg = jose.SphincsPlusSHA256128sRobust
+		case "sphincs+-sha256-128f-robust":
+			alg = jose.SphincsPlusSHA256128fRobust
+		case "sphincs+-shake256-128s-simple":
+			alg = jose.SphincsPlusSHAKE256128sSimple
+		case "sphincs+-shake256-128f-simple":
+			alg = jose.SphincsPlusSHAKE256128fSimple
+		case "sphincs+-shake256-128s-robust":
+			alg = jose.SphincsPlusSHAKE256128sRobust
+		case "sphincs+-shake256-128f-robust":
+			alg = jose.SphincsPlusSHAKE256128fRobust
 		}
 	case *pqc.PrivateKey:
 		switch k.AlgName {
@@ -100,9 +134,9 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 		case "sphincs+-sha256-256f-simple":
 			alg = jose.SphincsPlusSHA256256fSimple
 		case "sphincs+-sha256-256s-robust":
-			alg = jose.SphincsPlusHaraka256sRobust
+			alg = jose.SphincsPlusSHA256256sRobust
 		case "sphincs+-sha256-256f-robust":
-			alg = jose.SphincsPlusHaraka256fRobust
+			alg = jose.SphincsPlusSHA256256fRobust
 		case "sphincs+-shake256-256s-simple":
 			alg = jose.SphincsPlusSHAKE256256sSimple
 		case "sphincs+-shake256-256f-simple":
@@ -111,6 +145,40 @@ func (j *JWS) SignContent(url string, content []byte) (*jose.JSONWebSignature, e
 			alg = jose.SphincsPlusSHAKE256256sRobust
 		case "sphincs+-shake256-256f-robust":
 			alg = jose.SphincsPlusSHAKE256256fRobust
+		case "dilithium2":
+			alg = jose.Dilithium2
+		case "dilithium2-aes":
+			alg = jose.Dilithium2AES
+		case "rainbow-i-classic":
+			alg = jose.RainbowIClassic
+		case "rainbow-i-circumzenithal":
+			alg = jose.RainbowICircumzenithal
+		case "rainbow-i-compressed":
+			alg = jose.RainbowICompressed
+		case "sphincs+-haraka-128s-simple":
+			alg = jose.SphincsPlusHaraka128sSimple
+		case "sphincs+-haraka-128f-simple":
+			alg = jose.SphincsPlusHaraka128fSimple
+		case "sphincs+-haraka-128s-robust":
+			alg = jose.SphincsPlusHaraka128sRobust
+		case "sphincs+-haraka-128f-robust":
+			alg = jose.SphincsPlusHaraka128fRobust
+		case "sphincs+-sha256-128s-simple":
+			alg = jose.SphincsPlusSHA256128sSimple
+		case "sphincs+-sha256-128f-simple":
+			alg = jose.SphincsPlusSHA256128fSimple
+		case "sphincs+-sha256-128s-robust":
+			alg = jose.SphincsPlusSHA256128sRobust
+		case "sphincs+-sha256-128f-robust":
+			alg = jose.SphincsPlusSHA256128fRobust
+		case "sphincs+-shake256-128s-simple":
+			alg = jose.SphincsPlusSHAKE256128sSimple
+		case "sphincs+-shake256-128f-simple":
+			alg = jose.SphincsPlusSHAKE256128fSimple
+		case "sphincs+-shake256-128s-robust":
+			alg = jose.SphincsPlusSHAKE256128sRobust
+		case "sphincs+-shake256-128f-robust":
+			alg = jose.SphincsPlusSHAKE256128fRobust
 		}
 	case *rsa.PrivateKey:
 		alg = jose.RS256
