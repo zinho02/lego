@@ -54,3 +54,51 @@ func Test_getLink(t *testing.T) {
 		})
 	}
 }
+
+func Benchmark_getLink(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		testCases := []struct {
+			desc     string
+			header   http.Header
+			relName  string
+			expected string
+		}{
+			{
+				desc: "success",
+				header: http.Header{
+					"Link": []string{`<https://acme-staging-v02.api.letsencrypt.org/next>; rel="next", <https://acme-staging-v02.api.letsencrypt.org/up?query>; rel="up"`},
+				},
+				relName:  "up",
+				expected: "https://acme-staging-v02.api.letsencrypt.org/up?query",
+			},
+			{
+				desc: "success several lines",
+				header: http.Header{
+					"Link": []string{`<https://acme-staging-v02.api.letsencrypt.org/next>; rel="next"`, `<https://acme-staging-v02.api.letsencrypt.org/up?query>; rel="up"`},
+				},
+				relName:  "up",
+				expected: "https://acme-staging-v02.api.letsencrypt.org/up?query",
+			},
+			{
+				desc:     "no link",
+				header:   http.Header{},
+				relName:  "up",
+				expected: "",
+			},
+			{
+				desc:     "no header",
+				relName:  "up",
+				expected: "",
+			},
+		}
+
+		for _, test := range testCases {
+			test := test
+			b.Run(test.desc, func(b *testing.B) {
+				link := getLink(test.header, test.relName)
+
+				assert.Equal(b, test.expected, link)
+			})
+		}
+	}
+}

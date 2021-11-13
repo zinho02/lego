@@ -47,3 +47,40 @@ func TestRegistrar_ResolveAccountByKey(t *testing.T) {
 
 	assert.Equal(t, "valid", res.Body.Status, "Unexpected account status")
 }
+
+func BenchmarkRegistrar_ResolveAccountByKey(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		mux, apiURL, tearDown := tester.SetupFakeAPI()
+		defer tearDown()
+
+		mux.HandleFunc("/account", func(w http.ResponseWriter, _ *http.Request) {
+			w.Header().Set("Location", apiURL+"/account")
+			err := tester.WriteJSONResponse(w, acme.Account{
+				Status: "valid",
+			})
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+		})
+
+		key, err := rsa.GenerateKey(rand.Reader, 512)
+		require.NoError(b, err, "Could not generate test key")
+
+		user := mockUser{
+			email:      "test@test.com",
+			regres:     &Resource{},
+			privatekey: key,
+		}
+
+		core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
+		require.NoError(b, err)
+
+		registrar := NewRegistrar(core, user)
+
+		res, err := registrar.ResolveAccountByKey()
+		require.NoError(b, err, "Unexpected error resolving account by key")
+
+		assert.Equal(b, "valid", res.Body.Status, "Unexpected account status")
+	}
+}

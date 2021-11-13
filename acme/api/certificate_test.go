@@ -104,6 +104,40 @@ func TestCertificateService_Get_issuerRelUp(t *testing.T) {
 	assert.Equal(t, issuerMock, string(issuer), "IssuerCertificate")
 }
 
+func BenchmarkCertificateService_Get_issuerRelUp(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		mux, apiURL, tearDown := tester.SetupFakeAPI()
+		defer tearDown()
+
+		mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
+			w.Header().Set("Link", "<"+apiURL+`/issuer>; rel="up"`)
+			_, err := w.Write([]byte(certResponseMock))
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
+
+		mux.HandleFunc("/issuer", func(w http.ResponseWriter, _ *http.Request) {
+			p, _ := pem.Decode([]byte(issuerMock))
+			_, err := w.Write(p.Bytes)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
+
+		key, err := pqc.GenerateKey("dilithium5")
+		require.NoError(b, err, "Could not generate test key")
+
+		core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
+		require.NoError(b, err)
+
+		cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
+		require.NoError(b, err)
+		assert.Equal(b, certResponseMock, string(cert), "Certificate")
+		assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
+	}
+}
+
 func TestCertificateService_Get_embeddedIssuer(t *testing.T) {
 	mux, apiURL, tearDown := tester.SetupFakeAPI()
 	defer tearDown()
@@ -125,4 +159,29 @@ func TestCertificateService_Get_embeddedIssuer(t *testing.T) {
 	require.NoError(t, err)
 	assert.Equal(t, certResponseMock, string(cert), "Certificate")
 	assert.Equal(t, issuerMock, string(issuer), "IssuerCertificate")
+}
+
+func BenchmarkCertificateService_Get_embeddedIssuer(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		mux, apiURL, tearDown := tester.SetupFakeAPI()
+		defer tearDown()
+
+		mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
+			_, err := w.Write([]byte(certResponseMock))
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+			}
+		})
+
+		key, err := pqc.GenerateKey("dilithium5")
+		require.NoError(b, err, "Could not generate test key")
+
+		core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
+		require.NoError(b, err)
+
+		cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
+		require.NoError(b, err)
+		assert.Equal(b, certResponseMock, string(cert), "Certificate")
+		assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
+	}
 }

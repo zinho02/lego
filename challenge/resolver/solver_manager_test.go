@@ -31,6 +31,22 @@ func TestByType(t *testing.T) {
 	assert.Equal(t, expected, challenges)
 }
 
+func BenchmarkByType(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		challenges := []acme.Challenge{
+			{Type: "dns-01"}, {Type: "tlsalpn-01"}, {Type: "http-01"},
+		}
+
+		sort.Sort(byType(challenges))
+
+		expected := []acme.Challenge{
+			{Type: "tlsalpn-01"}, {Type: "http-01"}, {Type: "dns-01"},
+		}
+
+		assert.Equal(b, expected, challenges)
+	}
+}
+
 func TestValidate(t *testing.T) {
 	mux, apiURL, tearDown := tester.SetupFakeAPI()
 	defer tearDown()
@@ -146,6 +162,126 @@ func TestValidate(t *testing.T) {
 				assert.Contains(t, err.Error(), test.want)
 			}
 		})
+	}
+}
+
+func BenchmarkValidate(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		mux, apiURL, tearDown := tester.SetupFakeAPI()
+		defer tearDown()
+
+		var statuses []string
+
+		privateKey, _ := rsa.GenerateKey(rand.Reader, 512)
+
+		mux.HandleFunc("/chlg", func(w http.ResponseWriter, r *http.Request) {
+			if r.Method != http.MethodPost {
+				http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+				return
+			}
+
+			if err := validateNoBody(privateKey, r); err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
+			}
+
+			w.Header().Set("Link", "<"+apiURL+`/my-authz>; rel="up"`)
+
+			st := statuses[0]
+			statuses = statuses[1:]
+
+			chlg := &acme.Challenge{Type: "http-01", Status: st, URL: "http://example.com/", Token: "token"}
+			if st == acme.StatusInvalid {
+				chlg.Error = &acme.ProblemDetails{}
+			}
+
+			err := tester.WriteJSONResponse(w, chlg)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+		})
+
+		mux.HandleFunc("/my-authz", func(w http.ResponseWriter, r *http.Request) {
+			if r.Method != http.MethodPost {
+				http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+				return
+			}
+
+			st := statuses[0]
+			statuses = statuses[1:]
+
+			authorization := acme.Authorization{
+				Status:     st,
+				Challenges: []acme.Challenge{},
+			}
+
+			if st == acme.StatusInvalid {
+				chlg := acme.Challenge{
+					Status: acme.StatusInvalid,
+					Error:  &acme.ProblemDetails{},
+				}
+				authorization.Challenges = append(authorization.Challenges, chlg)
+			}
+
+			err := tester.WriteJSONResponse(w, authorization)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+		})
+
+		core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+		require.NoError(b, err)
+
+		testCases := []struct {
+			name     string
+			statuses []string
+			want     string
+		}{
+			{
+				name:     "POST-unexpected",
+				statuses: []string{"weird"},
+				want:     "unexpected",
+			},
+			{
+				name:     "POST-valid",
+				statuses: []string{acme.StatusValid},
+			},
+			{
+				name:     "POST-invalid",
+				statuses: []string{acme.StatusInvalid},
+				want:     "error",
+			},
+			{
+				name:     "POST-pending-unexpected",
+				statuses: []string{acme.StatusPending, "weird"},
+				want:     "unexpected",
+			},
+			{
+				name:     "POST-pending-valid",
+				statuses: []string{acme.StatusPending, acme.StatusValid},
+			},
+			{
+				name:     "POST-pending-invalid",
+				statuses: []string{acme.StatusPending, acme.StatusInvalid},
+				want:     "error",
+			},
+		}
+
+		for _, test := range testCases {
+			b.Run(test.name, func(b *testing.B) {
+				statuses = test.statuses
+
+				err := validate(core, "example.com", acme.Challenge{Type: "http-01", Token: "token", URL: apiURL + "/chlg"})
+				if test.want == "" {
+					require.NoError(b, err)
+				} else {
+					require.Error(b, err)
+					assert.Contains(b, err.Error(), test.want)
+				}
+			})
+		}
 	}
 }
 
