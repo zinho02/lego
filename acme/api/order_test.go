@@ -66,55 +66,59 @@ func TestOrderService_New(t *testing.T) {
 }
 
 func BenchmarkOrderService_New(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		mux, apiURL, tearDown := tester.SetupFakeAPI()
-		defer tearDown()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
+			for n := 0; n < b.N; n++ {
+				mux, apiURL, tearDown := tester.SetupFakeAPI()
+				defer tearDown()
 
-		// small value keeps test fast
-		privateKey, errK := pqc.GenerateKey("dilithium5")
-		require.NoError(b, errK, "Could not generate test key")
+				// small value keeps test fast
+				privateKey, errK := pqc.GenerateKey(v.input)
+				require.NoError(b, errK, "Could not generate test key")
 
-		mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
-			if r.Method != http.MethodPost {
-				http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-				return
-			}
+				mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
+					if r.Method != http.MethodPost {
+						http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+						return
+					}
 
-			body, err := readSignedBody(r, privateKey)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusBadRequest)
-			}
+					body, err := readSignedBody(r, privateKey)
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusBadRequest)
+					}
 
-			order := acme.Order{}
-			err = json.Unmarshal(body, &order)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusBadRequest)
-				return
-			}
+					order := acme.Order{}
+					err = json.Unmarshal(body, &order)
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusBadRequest)
+						return
+					}
 
-			err = tester.WriteJSONResponse(w, acme.Order{
-				Status:      acme.StatusValid,
-				Identifiers: order.Identifiers,
-			})
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-				return
+					err = tester.WriteJSONResponse(w, acme.Order{
+						Status:      acme.StatusValid,
+						Identifiers: order.Identifiers,
+					})
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+						return
+					}
+				})
+
+				core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+				require.NoError(b, err)
+
+				order, err := core.Orders.New([]string{"example.com"})
+				require.NoError(b, err)
+
+				expected := acme.ExtendedOrder{
+					Order: acme.Order{
+						Status:      "valid",
+						Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
+					},
+				}
+				assert.Equal(b, expected, order)
 			}
 		})
-
-		core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-		require.NoError(b, err)
-
-		order, err := core.Orders.New([]string{"example.com"})
-		require.NoError(b, err)
-
-		expected := acme.ExtendedOrder{
-			Order: acme.Order{
-				Status:      "valid",
-				Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
-			},
-		}
-		assert.Equal(b, expected, order)
 	}
 }
 
@@ -131,7 +135,7 @@ func readSignedBody(r *http.Request, privateKey *pqc.PrivateKey) ([]byte, error)
 
 	body, err := jws.Verify(&jose.JSONWebKey{
 		Key:       privateKey.Public(),
-		Algorithm: "Dilithium5",
+		Algorithm: "RainbowVClassic",
 	})
 	if err != nil {
 		return nil, err

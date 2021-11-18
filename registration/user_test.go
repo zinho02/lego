@@ -2,13 +2,14 @@ package registration
 
 import (
 	"crypto"
-	"crypto/rsa"
+
+	"crypto/pqc"
 )
 
 type mockUser struct {
 	email      string
 	regres     *Resource
-	privatekey *rsa.PrivateKey
+	privatekey *pqc.PrivateKey
 }
 
 func (u mockUser) GetEmail() string                 { return u.email }

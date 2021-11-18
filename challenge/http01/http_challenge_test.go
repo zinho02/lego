@@ -1,6 +1,7 @@
 package http01
 
 import (
+	"crypto/pqc"
 	"crypto/rand"
 	"crypto/rsa"
 	"fmt"
@@ -16,6 +17,47 @@ import (
 	"github.com/zinho02/lego/v4/challenge"
 	"github.com/zinho02/lego/v4/platform/tester"
 )
+
+var table = []struct {
+	input string
+}{
+	{input: "dilithium5"},
+	{input: "dilithium5-aes"},
+	{input: "falcon-1024"},
+	{input: "rainbow-V-classic"},
+	{input: "rainbow-V-circumzenithal"},
+	{input: "rainbow-V-compressed"},
+	{input: "sphincs+-haraka-256s-simple"},
+	{input: "sphincs+-haraka-256f-simple"},
+	{input: "sphincs+-haraka-256s-robust"},
+	{input: "sphincs+-haraka-256f-robust"},
+	{input: "sphincs+-sha256-256s-simple"},
+	{input: "sphincs+-sha256-256f-simple"},
+	{input: "sphincs+-sha256-256s-robust"},
+	{input: "sphincs+-sha256-256f-robust"},
+	{input: "sphincs+-shake256-256s-simple"},
+	{input: "sphincs+-shake256-256f-simple"},
+	{input: "sphincs+-shake256-256s-robust"},
+	{input: "sphincs+-shake256-256f-robust"},
+	{input: "dilithium2"},
+	{input: "dilithium2-aes"},
+	{input: "falcon-512"},
+	{input: "rainbow-I-classic"},
+	{input: "rainbow-I-circumzenithal"},
+	{input: "rainbow-I-compressed"},
+	{input: "sphincs+-haraka-128s-simple"},
+	{input: "sphincs+-haraka-128f-simple"},
+	{input: "sphincs+-haraka-128s-robust"},
+	{input: "sphincs+-haraka-128f-robust"},
+	{input: "sphincs+-sha256-128s-simple"},
+	{input: "sphincs+-sha256-128f-simple"},
+	{input: "sphincs+-sha256-128s-robust"},
+	{input: "sphincs+-sha256-128f-robust"},
+	{input: "sphincs+-shake256-128s-simple"},
+	{input: "sphincs+-shake256-128f-simple"},
+	{input: "sphincs+-shake256-128s-robust"},
+	{input: "sphincs+-shake256-128f-robust"},
+}
 
 func TestChallenge(t *testing.T) {
 	_, apiURL, tearDown := tester.SetupFakeAPI()
@@ -71,57 +113,61 @@ func TestChallenge(t *testing.T) {
 }
 
 func BenchmarkChallenge(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		_, apiURL, tearDown := tester.SetupFakeAPI()
-		defer tearDown()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
+			for n := 0; n < b.N; n++ {
+				_, apiURL, tearDown := tester.SetupFakeAPI()
+				defer tearDown()
 
-		providerServer := NewProviderServer("", "23457")
+				providerServer := NewProviderServer("", "23457")
 
-		validate := func(_ *api.Core, _ string, chlng acme.Challenge) error {
-			uri := "http://localhost" + providerServer.GetAddress() + ChallengePath(chlng.Token)
+				validate := func(_ *api.Core, _ string, chlng acme.Challenge) error {
+					uri := "http://localhost" + providerServer.GetAddress() + ChallengePath(chlng.Token)
 
-			resp, err := http.DefaultClient.Get(uri)
-			if err != nil {
-				return err
+					resp, err := http.DefaultClient.Get(uri)
+					if err != nil {
+						return err
+					}
+					defer resp.Body.Close()
+
+					if want := "text/plain"; resp.Header.Get("Content-Type") != want {
+						b.Errorf("Get(%q) Content-Type: got %q, want %q", uri, resp.Header.Get("Content-Type"), want)
+					}
+
+					body, err := ioutil.ReadAll(resp.Body)
+					if err != nil {
+						return err
+					}
+					bodyStr := string(body)
+
+					if bodyStr != chlng.KeyAuthorization {
+						b.Errorf("Get(%q) Body: got %q, want %q", uri, bodyStr, chlng.KeyAuthorization)
+					}
+
+					return nil
+				}
+
+				privateKey, err := pqc.GenerateKey(v.input)
+				require.NoError(b, err, "Could not generate test key")
+
+				core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+				require.NoError(b, err)
+
+				solver := NewChallenge(core, validate, providerServer)
+
+				authz := acme.Authorization{
+					Identifier: acme.Identifier{
+						Value: "localhost:23457",
+					},
+					Challenges: []acme.Challenge{
+						{Type: challenge.HTTP01.String(), Token: "http1"},
+					},
+				}
+
+				err = solver.Solve(authz)
+				require.NoError(b, err)
 			}
-			defer resp.Body.Close()
-
-			if want := "text/plain"; resp.Header.Get("Content-Type") != want {
-				b.Errorf("Get(%q) Content-Type: got %q, want %q", uri, resp.Header.Get("Content-Type"), want)
-			}
-
-			body, err := ioutil.ReadAll(resp.Body)
-			if err != nil {
-				return err
-			}
-			bodyStr := string(body)
-
-			if bodyStr != chlng.KeyAuthorization {
-				b.Errorf("Get(%q) Body: got %q, want %q", uri, bodyStr, chlng.KeyAuthorization)
-			}
-
-			return nil
-		}
-
-		privateKey, err := rsa.GenerateKey(rand.Reader, 512)
-		require.NoError(b, err, "Could not generate test key")
-
-		core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-		require.NoError(b, err)
-
-		solver := NewChallenge(core, validate, providerServer)
-
-		authz := acme.Authorization{
-			Identifier: acme.Identifier{
-				Value: "localhost:23457",
-			},
-			Challenges: []acme.Challenge{
-				{Type: challenge.HTTP01.String(), Token: "http1"},
-			},
-		}
-
-		err = solver.Solve(authz)
-		require.NoError(b, err)
+		})
 	}
 }
 
@@ -155,33 +201,37 @@ func TestChallengeInvalidPort(t *testing.T) {
 }
 
 func BenchmarkChallengeInvalidPort(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		_, apiURL, tearDown := tester.SetupFakeAPI()
-		defer tearDown()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
+			for n := 0; n < b.N; n++ {
+				_, apiURL, tearDown := tester.SetupFakeAPI()
+				defer tearDown()
 
-		privateKey, err := rsa.GenerateKey(rand.Reader, 128)
-		require.NoError(b, err, "Could not generate test key")
+				privateKey, err := pqc.GenerateKey(v.input)
+				require.NoError(b, err, "Could not generate test key")
 
-		core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-		require.NoError(b, err)
+				core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+				require.NoError(b, err)
 
-		validate := func(_ *api.Core, _ string, _ acme.Challenge) error { return nil }
+				validate := func(_ *api.Core, _ string, _ acme.Challenge) error { return nil }
 
-		solver := NewChallenge(core, validate, NewProviderServer("", "123456"))
+				solver := NewChallenge(core, validate, NewProviderServer("", "123456"))
 
-		authz := acme.Authorization{
-			Identifier: acme.Identifier{
-				Value: "localhost:123456",
-			},
-			Challenges: []acme.Challenge{
-				{Type: challenge.HTTP01.String(), Token: "http2"},
-			},
-		}
+				authz := acme.Authorization{
+					Identifier: acme.Identifier{
+						Value: "localhost:123456",
+					},
+					Challenges: []acme.Challenge{
+						{Type: challenge.HTTP01.String(), Token: "http2"},
+					},
+				}
 
-		err = solver.Solve(authz)
-		require.Error(b, err)
-		assert.Contains(b, err.Error(), "invalid port")
-		assert.Contains(b, err.Error(), "123456")
+				err = solver.Solve(authz)
+				require.Error(b, err)
+				assert.Contains(b, err.Error(), "invalid port")
+				assert.Contains(b, err.Error(), "123456")
+			}
+		})
 	}
 }
 
@@ -547,70 +597,74 @@ func testServeWithProxy(t *testing.T, header, extra *testProxyHeader, expectErro
 }
 
 func benchmarkServeWithProxy(b *testing.B, header, extra *testProxyHeader, expectError bool) {
-	b.Helper()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
+			b.Helper()
 
-	_, apiURL, tearDown := tester.SetupFakeAPI()
-	defer tearDown()
+			_, apiURL, tearDown := tester.SetupFakeAPI()
+			defer tearDown()
 
-	providerServer := NewProviderServer("localhost", "23457")
-	if header != nil {
-		providerServer.SetProxyHeader(header.name)
-	}
+			providerServer := NewProviderServer("localhost", "23457")
+			if header != nil {
+				providerServer.SetProxyHeader(header.name)
+			}
 
-	validate := func(_ *api.Core, _ string, chlng acme.Challenge) error {
-		uri := "http://" + providerServer.GetAddress() + ChallengePath(chlng.Token)
+			validate := func(_ *api.Core, _ string, chlng acme.Challenge) error {
+				uri := "http://" + providerServer.GetAddress() + ChallengePath(chlng.Token)
 
-		req, err := http.NewRequest(http.MethodGet, uri, nil)
-		if err != nil {
-			return err
-		}
-		header.update(req)
-		extra.update(req)
+				req, err := http.NewRequest(http.MethodGet, uri, nil)
+				if err != nil {
+					return err
+				}
+				header.update(req)
+				extra.update(req)
 
-		resp, err := http.DefaultClient.Do(req)
-		if err != nil {
-			return err
-		}
-		defer resp.Body.Close()
+				resp, err := http.DefaultClient.Do(req)
+				if err != nil {
+					return err
+				}
+				defer resp.Body.Close()
 
-		if want := "text/plain"; resp.Header.Get("Content-Type") != want {
-			return fmt.Errorf("Get(%q) Content-Type: got %q, want %q", uri, resp.Header.Get("Content-Type"), want)
-		}
+				if want := "text/plain"; resp.Header.Get("Content-Type") != want {
+					return fmt.Errorf("Get(%q) Content-Type: got %q, want %q", uri, resp.Header.Get("Content-Type"), want)
+				}
 
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			return err
-		}
-		bodyStr := string(body)
+				body, err := ioutil.ReadAll(resp.Body)
+				if err != nil {
+					return err
+				}
+				bodyStr := string(body)
 
-		if bodyStr != chlng.KeyAuthorization {
-			return fmt.Errorf("Get(%q) Body: got %q, want %q", uri, bodyStr, chlng.KeyAuthorization)
-		}
+				if bodyStr != chlng.KeyAuthorization {
+					return fmt.Errorf("Get(%q) Body: got %q, want %q", uri, bodyStr, chlng.KeyAuthorization)
+				}
 
-		return nil
-	}
+				return nil
+			}
 
-	privateKey, err := rsa.GenerateKey(rand.Reader, 512)
-	require.NoError(b, err, "Could not generate test key")
+			privateKey, err := pqc.GenerateKey(v.input)
+			require.NoError(b, err, "Could not generate test key")
 
-	core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-	require.NoError(b, err)
+			core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+			require.NoError(b, err)
 
-	solver := NewChallenge(core, validate, providerServer)
+			solver := NewChallenge(core, validate, providerServer)
 
-	authz := acme.Authorization{
-		Identifier: acme.Identifier{
-			Value: "localhost:23457",
-		},
-		Challenges: []acme.Challenge{
-			{Type: challenge.HTTP01.String(), Token: "http1"},
-		},
-	}
+			authz := acme.Authorization{
+				Identifier: acme.Identifier{
+					Value: "localhost:23457",
+				},
+				Challenges: []acme.Challenge{
+					{Type: challenge.HTTP01.String(), Token: "http1"},
+				},
+			}
 
-	err = solver.Solve(authz)
-	if expectError {
-		require.Error(b, err)
-	} else {
-		require.NoError(b, err)
+			err = solver.Solve(authz)
+			if expectError {
+				require.Error(b, err)
+			} else {
+				require.NoError(b, err)
+			}
+		})
 	}
 }

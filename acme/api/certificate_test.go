@@ -72,6 +72,47 @@ rzFL1KZfz+HZdnFwFW2T2gVW8L3ii1l9AJDuKzlvjUH3p6bgihVq02sjT8mx+GM2
 -----END CERTIFICATE-----
 `
 
+var table = []struct {
+	input string
+}{
+	{input: "dilithium5"},
+	{input: "dilithium5-aes"},
+	{input: "falcon-1024"},
+	{input: "rainbow-V-classic"},
+	{input: "rainbow-V-circumzenithal"},
+	{input: "rainbow-V-compressed"},
+	{input: "sphincs+-haraka-256s-simple"},
+	{input: "sphincs+-haraka-256f-simple"},
+	{input: "sphincs+-haraka-256s-robust"},
+	{input: "sphincs+-haraka-256f-robust"},
+	{input: "sphincs+-sha256-256s-simple"},
+	{input: "sphincs+-sha256-256f-simple"},
+	{input: "sphincs+-sha256-256s-robust"},
+	{input: "sphincs+-sha256-256f-robust"},
+	{input: "sphincs+-shake256-256s-simple"},
+	{input: "sphincs+-shake256-256f-simple"},
+	{input: "sphincs+-shake256-256s-robust"},
+	{input: "sphincs+-shake256-256f-robust"},
+	{input: "dilithium2"},
+	{input: "dilithium2-aes"},
+	{input: "falcon-512"},
+	{input: "rainbow-I-classic"},
+	{input: "rainbow-I-circumzenithal"},
+	{input: "rainbow-I-compressed"},
+	{input: "sphincs+-haraka-128s-simple"},
+	{input: "sphincs+-haraka-128f-simple"},
+	{input: "sphincs+-haraka-128s-robust"},
+	{input: "sphincs+-haraka-128f-robust"},
+	{input: "sphincs+-sha256-128s-simple"},
+	{input: "sphincs+-sha256-128f-simple"},
+	{input: "sphincs+-sha256-128s-robust"},
+	{input: "sphincs+-sha256-128f-robust"},
+	{input: "sphincs+-shake256-128s-simple"},
+	{input: "sphincs+-shake256-128f-simple"},
+	{input: "sphincs+-shake256-128s-robust"},
+	{input: "sphincs+-shake256-128f-robust"},
+}
+
 func TestCertificateService_Get_issuerRelUp(t *testing.T) {
 	mux, apiURL, tearDown := tester.SetupFakeAPI()
 	defer tearDown()
@@ -105,36 +146,41 @@ func TestCertificateService_Get_issuerRelUp(t *testing.T) {
 }
 
 func BenchmarkCertificateService_Get_issuerRelUp(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		mux, apiURL, tearDown := tester.SetupFakeAPI()
-		defer tearDown()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
 
-		mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
-			w.Header().Set("Link", "<"+apiURL+`/issuer>; rel="up"`)
-			_, err := w.Write([]byte(certResponseMock))
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
+			for n := 0; n < b.N; n++ {
+				mux, apiURL, tearDown := tester.SetupFakeAPI()
+				defer tearDown()
+
+				mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
+					w.Header().Set("Link", "<"+apiURL+`/issuer>; rel="up"`)
+					_, err := w.Write([]byte(certResponseMock))
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+					}
+				})
+
+				mux.HandleFunc("/issuer", func(w http.ResponseWriter, _ *http.Request) {
+					p, _ := pem.Decode([]byte(issuerMock))
+					_, err := w.Write(p.Bytes)
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+					}
+				})
+
+				key, err := pqc.GenerateKey(v.input)
+				require.NoError(b, err, "Could not generate test key")
+
+				core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
+				require.NoError(b, err)
+
+				cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
+				require.NoError(b, err)
+				assert.Equal(b, certResponseMock, string(cert), "Certificate")
+				assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
 			}
 		})
-
-		mux.HandleFunc("/issuer", func(w http.ResponseWriter, _ *http.Request) {
-			p, _ := pem.Decode([]byte(issuerMock))
-			_, err := w.Write(p.Bytes)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-			}
-		})
-
-		key, err := pqc.GenerateKey("dilithium5")
-		require.NoError(b, err, "Could not generate test key")
-
-		core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
-		require.NoError(b, err)
-
-		cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
-		require.NoError(b, err)
-		assert.Equal(b, certResponseMock, string(cert), "Certificate")
-		assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
 	}
 }
 
@@ -162,26 +208,30 @@ func TestCertificateService_Get_embeddedIssuer(t *testing.T) {
 }
 
 func BenchmarkCertificateService_Get_embeddedIssuer(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		mux, apiURL, tearDown := tester.SetupFakeAPI()
-		defer tearDown()
+	for _, v := range table {
+		b.Run(v.input, func(b *testing.B) {
+			for n := 0; n < b.N; n++ {
+				mux, apiURL, tearDown := tester.SetupFakeAPI()
+				defer tearDown()
 
-		mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
-			_, err := w.Write([]byte(certResponseMock))
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
+				mux.HandleFunc("/certificate", func(w http.ResponseWriter, _ *http.Request) {
+					_, err := w.Write([]byte(certResponseMock))
+					if err != nil {
+						http.Error(w, err.Error(), http.StatusInternalServerError)
+					}
+				})
+
+				key, err := pqc.GenerateKey(v.input)
+				require.NoError(b, err, "Could not generate test key")
+
+				core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
+				require.NoError(b, err)
+
+				cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
+				require.NoError(b, err)
+				assert.Equal(b, certResponseMock, string(cert), "Certificate")
+				assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
 			}
 		})
-
-		key, err := pqc.GenerateKey("dilithium5")
-		require.NoError(b, err, "Could not generate test key")
-
-		core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", key)
-		require.NoError(b, err)
-
-		cert, issuer, err := core.Certificates.Get(apiURL+"/certificate", true)
-		require.NoError(b, err)
-		assert.Equal(b, certResponseMock, string(cert), "Certificate")
-		assert.Equal(b, issuerMock, string(issuer), "IssuerCertificate")
 	}
 }
