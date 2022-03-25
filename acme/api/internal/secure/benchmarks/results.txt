@@ -1,0 +1,7 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/acme/api/internal/secure
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkNotHoldingLockWhileMakingHTTPRequests-8   	       1	 251726514 ns/op	   67552 B/op	     390 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/acme/api/internal/secure	0.510s

@@ -1,11 +1,16 @@
 package api
 
 import (
-	"crypto/pqc"
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/rsa"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"testing"
+
+	"github.com/zinho02/lego/v4/certcrypto"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -14,115 +19,195 @@ import (
 	jose "gopkg.in/square/go-jose.v2"
 )
 
-func TestOrderService_New(t *testing.T) {
-	mux, apiURL, tearDown := tester.SetupFakeAPI()
-	defer tearDown()
+// func TestOrderService_New(t *testing.T) {
+// 	mux, apiURL, tearDown := tester.SetupFakeAPI()
+// 	defer tearDown()
 
-	// small value keeps test fast
-	privateKey, errK := pqc.GenerateKey("dilithium5")
-	require.NoError(t, errK, "Could not generate test key")
+// 	// small value keeps test fast
+// 	privateKey, errK := pqc.GenerateKey("dilithium5")
+// 	require.NoError(t, errK, "Could not generate test key")
 
-	mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-			return
-		}
+// 	mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
+// 		if r.Method != http.MethodPost {
+// 			http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+// 			return
+// 		}
 
-		body, err := readSignedBody(r, privateKey)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-		}
+// 		body, err := readSignedBody(r, privateKey)
+// 		if err != nil {
+// 			http.Error(w, err.Error(), http.StatusBadRequest)
+// 		}
 
-		order := acme.Order{}
-		err = json.Unmarshal(body, &order)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
+// 		order := acme.Order{}
+// 		err = json.Unmarshal(body, &order)
+// 		if err != nil {
+// 			http.Error(w, err.Error(), http.StatusBadRequest)
+// 			return
+// 		}
 
-		err = tester.WriteJSONResponse(w, acme.Order{
-			Status:      acme.StatusValid,
-			Identifiers: order.Identifiers,
-		})
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-	})
+// 		err = tester.WriteJSONResponse(w, acme.Order{
+// 			Status:      acme.StatusValid,
+// 			Identifiers: order.Identifiers,
+// 		})
+// 		if err != nil {
+// 			http.Error(w, err.Error(), http.StatusInternalServerError)
+// 			return
+// 		}
+// 	})
 
-	core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-	require.NoError(t, err)
+// 	core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+// 	require.NoError(t, err)
 
-	order, err := core.Orders.New([]string{"example.com"})
-	require.NoError(t, err)
+// 	order, err := core.Orders.New([]string{"example.com"})
+// 	require.NoError(t, err)
 
-	expected := acme.ExtendedOrder{
-		Order: acme.Order{
-			Status:      "valid",
-			Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
-		},
-	}
-	assert.Equal(t, expected, order)
-}
+// 	expected := acme.ExtendedOrder{
+// 		Order: acme.Order{
+// 			Status:      "valid",
+// 			Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
+// 		},
+// 	}
+// 	assert.Equal(t, expected, order)
+// }
 
 func BenchmarkOrderService_New(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
-				mux, apiURL, tearDown := tester.SetupFakeAPI()
-				defer tearDown()
+				if v.input == certcrypto.RSA2048 || v.input == certcrypto.RSA8192 {
+					mux, apiURL, tearDown := tester.SetupFakeAPI()
+					defer tearDown()
 
-				// small value keeps test fast
-				privateKey, errK := pqc.GenerateKey(v.input)
-				require.NoError(b, errK, "Could not generate test key")
+					// small value keeps test fast
+					privateKey, errK := rsa.GenerateKey(rand.Reader, v.bits)
+					require.NoError(b, errK, "Could not generate test key")
 
-				mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
-					if r.Method != http.MethodPost {
-						http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-						return
-					}
+					mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
+						if r.Method != http.MethodPost {
+							http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+							return
+						}
 
-					body, err := readSignedBody(r, privateKey)
-					if err != nil {
-						http.Error(w, err.Error(), http.StatusBadRequest)
-					}
+						body, err := readSignedBodyRSA(r, privateKey)
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusBadRequest)
+						}
 
-					order := acme.Order{}
-					err = json.Unmarshal(body, &order)
-					if err != nil {
-						http.Error(w, err.Error(), http.StatusBadRequest)
-						return
-					}
+						order := acme.Order{}
+						err = json.Unmarshal(body, &order)
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusBadRequest)
+							return
+						}
 
-					err = tester.WriteJSONResponse(w, acme.Order{
-						Status:      acme.StatusValid,
-						Identifiers: order.Identifiers,
+						err = tester.WriteJSONResponse(w, acme.Order{
+							Status:      acme.StatusValid,
+							Identifiers: order.Identifiers,
+						})
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusInternalServerError)
+							return
+						}
 					})
-					if err != nil {
-						http.Error(w, err.Error(), http.StatusInternalServerError)
-						return
+
+					core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+					require.NoError(b, err)
+
+					order, err := core.Orders.New([]string{"example.com"})
+					require.NoError(b, err)
+
+					expected := acme.ExtendedOrder{
+						Order: acme.Order{
+							Status:      "valid",
+							Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
+						},
 					}
-				})
+					assert.Equal(b, expected, order)
+				} else {
+					mux, apiURL, tearDown := tester.SetupFakeAPI()
+					defer tearDown()
 
-				core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
-				require.NoError(b, err)
+					// small value keeps test fast
+					var privateKey *ecdsa.PrivateKey
+					var errK error
+					if v.input == certcrypto.EC384 {
+						privateKey, errK = ecdsa.GenerateKey(elliptic.P384(), rand.Reader)
+						require.NoError(b, errK, "Could not generate test key")
+					} else {
+						privateKey, errK = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+						require.NoError(b, errK, "Could not generate test key")
+					}
 
-				order, err := core.Orders.New([]string{"example.com"})
-				require.NoError(b, err)
+					mux.HandleFunc("/newOrder", func(w http.ResponseWriter, r *http.Request) {
+						if r.Method != http.MethodPost {
+							http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+							return
+						}
 
-				expected := acme.ExtendedOrder{
-					Order: acme.Order{
-						Status:      "valid",
-						Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
-					},
+						body, err := readSignedBodyECDSA(r, privateKey)
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusBadRequest)
+						}
+
+						order := acme.Order{}
+						err = json.Unmarshal(body, &order)
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusBadRequest)
+							return
+						}
+
+						err = tester.WriteJSONResponse(w, acme.Order{
+							Status:      acme.StatusValid,
+							Identifiers: order.Identifiers,
+						})
+						if err != nil {
+							http.Error(w, err.Error(), http.StatusInternalServerError)
+							return
+						}
+					})
+
+					core, err := New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
+					require.NoError(b, err)
+
+					order, err := core.Orders.New([]string{"example.com"})
+					require.NoError(b, err)
+
+					expected := acme.ExtendedOrder{
+						Order: acme.Order{
+							Status:      "valid",
+							Identifiers: []acme.Identifier{{Type: "dns", Value: "example.com"}},
+						},
+					}
+					assert.Equal(b, expected, order)
 				}
-				assert.Equal(b, expected, order)
 			}
 		})
 	}
 }
 
-func readSignedBody(r *http.Request, privateKey *pqc.PrivateKey) ([]byte, error) {
+func readSignedBodyRSA(r *http.Request, privateKey *rsa.PrivateKey) ([]byte, error) {
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	jws, err := jose.ParseSigned(string(reqBody))
+	if err != nil {
+		return nil, err
+	}
+
+	body, err := jws.Verify(&jose.JSONWebKey{
+		Key:       privateKey.Public(),
+		Algorithm: "RainbowVClassic",
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return body, nil
+}
+
+func readSignedBodyECDSA(r *http.Request, privateKey *ecdsa.PrivateKey) ([]byte, error) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return nil, err

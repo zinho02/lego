@@ -392,3 +392,59 @@ func generateDerCert(privateKey *pqc.PrivateKey, expiration time.Time, domain st
 
 	return x509.CreateCertificate(rand.Reader, &template, &template, &privateKey.PublicKey, privateKey)
 }
+
+func generateDerCertRSA(privateKey *rsa.PrivateKey, expiration time.Time, domain string, extensions []pkix.Extension) ([]byte, error) {
+	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
+	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
+	if err != nil {
+		return nil, err
+	}
+
+	if expiration.IsZero() {
+		expiration = time.Now().Add(365)
+	}
+
+	template := x509.Certificate{
+		SerialNumber: serialNumber,
+		Subject: pkix.Name{
+			CommonName: "ACME Challenge TEMP",
+		},
+		NotBefore: time.Now(),
+		NotAfter:  expiration,
+
+		KeyUsage:              x509.KeyUsageKeyEncipherment,
+		BasicConstraintsValid: true,
+		DNSNames:              []string{domain},
+		ExtraExtensions:       extensions,
+	}
+
+	return x509.CreateCertificate(rand.Reader, &template, &template, &privateKey.PublicKey, privateKey)
+}
+
+func generateDerCertECDSA(privateKey *ecdsa.PrivateKey, expiration time.Time, domain string, extensions []pkix.Extension) ([]byte, error) {
+	serialNumberLimit := new(big.Int).Lsh(big.NewInt(1), 128)
+	serialNumber, err := rand.Int(rand.Reader, serialNumberLimit)
+	if err != nil {
+		return nil, err
+	}
+
+	if expiration.IsZero() {
+		expiration = time.Now().Add(365)
+	}
+
+	template := x509.Certificate{
+		SerialNumber: serialNumber,
+		Subject: pkix.Name{
+			CommonName: "ACME Challenge TEMP",
+		},
+		NotBefore: time.Now(),
+		NotAfter:  expiration,
+
+		KeyUsage:              x509.KeyUsageKeyEncipherment,
+		BasicConstraintsValid: true,
+		DNSNames:              []string{domain},
+		ExtraExtensions:       extensions,
+	}
+
+	return x509.CreateCertificate(rand.Reader, &template, &template, &privateKey.PublicKey, privateKey)
+}

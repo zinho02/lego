@@ -1,0 +1,22 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/acme/api
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkCertificateService_Get_issuerRelUp/RSA8192-8         	       1	29538075669 ns/op	30158632 B/op	   28723 allocs/op
+BenchmarkCertificateService_Get_issuerRelUp/RSA2048-8         	       1	 231009133 ns/op	 3957552 B/op	   10530 allocs/op
+BenchmarkCertificateService_Get_issuerRelUp/EC384-8           	       1	   7226510 ns/op	 3606200 B/op	   29529 allocs/op
+BenchmarkCertificateService_Get_issuerRelUp/EC256-8           	       1	    645696 ns/op	  101560 B/op	     663 allocs/op
+BenchmarkCertificateService_Get_embeddedIssuer/RSA8192-8      	       1	10155533507 ns/op	10017952 B/op	    9939 allocs/op
+BenchmarkCertificateService_Get_embeddedIssuer/RSA2048-8      	       1	 257552848 ns/op	 4234304 B/op	   11273 allocs/op
+BenchmarkCertificateService_Get_embeddedIssuer/EC384-8        	       1	   6855677 ns/op	 3507464 B/op	   28697 allocs/op
+BenchmarkCertificateService_Get_embeddedIssuer/EC256-8        	       1	    742294 ns/op	   96832 B/op	     662 allocs/op
+BenchmarkOrderService_New/RSA8192-8                           	       1	96677936517 ns/op	97570440 B/op	   91730 allocs/op
+BenchmarkOrderService_New/RSA2048-8                           	       1	 279057929 ns/op	 4986416 B/op	   13266 allocs/op
+BenchmarkOrderService_New/EC384-8                             	       1	  17973537 ns/op	 6949448 B/op	   57257 allocs/op
+BenchmarkOrderService_New/EC256-8                             	       1	    777645 ns/op	   93912 B/op	     886 allocs/op
+Benchmark_getLink/success-8                                   	       1	     44093 ns/op	   44400 B/op	      62 allocs/op
+Benchmark_getLink/success_several_lines-8                     	       1	     30698 ns/op	    7504 B/op	      58 allocs/op
+Benchmark_getLink/no_link-8                                   	       1	     33994 ns/op	    5752 B/op	      47 allocs/op
+Benchmark_getLink/no_header-8                                 	       1	     26359 ns/op	    5752 B/op	      47 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/acme/api	216.325s

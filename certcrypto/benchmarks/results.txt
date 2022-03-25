@@ -1,0 +1,42 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/certcrypto
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkGeneratePrivateKey/RSA8192-8         	       1	42013866457 ns/op	42268552 B/op	   39519 allocs/op
+BenchmarkGeneratePrivateKey/RSA2048-8         	       1	 249897259 ns/op	 4024784 B/op	   10367 allocs/op
+BenchmarkGeneratePrivateKey/EC384-8           	       1	   2979343 ns/op	 1727472 B/op	   14277 allocs/op
+BenchmarkGeneratePrivateKey/EC256-8           	       1	     38542 ns/op	    1816 B/op	      16 allocs/op
+BenchmarkGenerateCSR/RSA8192/without_SAN-8    	       1	  66684832 ns/op	  193936 B/op	     378 allocs/op
+BenchmarkGenerateCSR/RSA8192/without_SAN#01-8 	       1	  66197090 ns/op	  186304 B/op	     375 allocs/op
+BenchmarkGenerateCSR/RSA8192/with_SAN-8       	       1	  71811640 ns/op	  196008 B/op	     424 allocs/op
+BenchmarkGenerateCSR/RSA8192/no_domain-8      	       1	  67609681 ns/op	  193360 B/op	     356 allocs/op
+BenchmarkGenerateCSR/RSA8192/no_domain_with_SAN-8         	       1	  66743338 ns/op	  195432 B/op	     403 allocs/op
+BenchmarkGenerateCSR/RSA8192/private_key_nil-8            	       1	     10129 ns/op	      80 B/op	       2 allocs/op
+BenchmarkGenerateCSR/RSA2048/without_SAN-8                	       1	   1441589 ns/op	   38536 B/op	     299 allocs/op
+BenchmarkGenerateCSR/RSA2048/without_SAN#01-8             	       1	   1493522 ns/op	   39456 B/op	     303 allocs/op
+BenchmarkGenerateCSR/RSA2048/with_SAN-8                   	       1	   1632830 ns/op	   41432 B/op	     349 allocs/op
+BenchmarkGenerateCSR/RSA2048/no_domain-8                  	       1	   1459247 ns/op	   37864 B/op	     277 allocs/op
+BenchmarkGenerateCSR/RSA2048/no_domain_with_SAN-8         	       1	   1454995 ns/op	   39936 B/op	     323 allocs/op
+BenchmarkGenerateCSR/RSA2048/private_key_nil-8            	       1	      8215 ns/op	      80 B/op	       2 allocs/op
+BenchmarkGenerateCSR/EC384/without_SAN-8                  	       1	   3070452 ns/op	 1743032 B/op	   14528 allocs/op
+BenchmarkGenerateCSR/EC384/without_SAN#01-8               	       1	   2978729 ns/op	 1740536 B/op	   14510 allocs/op
+BenchmarkGenerateCSR/EC384/with_SAN-8                     	       1	   2998456 ns/op	 1758368 B/op	   14679 allocs/op
+BenchmarkGenerateCSR/EC384/no_domain-8                    	       1	   2917724 ns/op	 1742984 B/op	   14506 allocs/op
+BenchmarkGenerateCSR/EC384/no_domain_with_SAN-8           	       1	   3020859 ns/op	 1703088 B/op	   14212 allocs/op
+BenchmarkGenerateCSR/EC384/private_key_nil-8              	       1	     10720 ns/op	      80 B/op	       2 allocs/op
+BenchmarkGenerateCSR/EC256/without_SAN-8                  	       1	    104447 ns/op	    9696 B/op	     220 allocs/op
+BenchmarkGenerateCSR/EC256/without_SAN#01-8               	       1	     89158 ns/op	    9592 B/op	     217 allocs/op
+BenchmarkGenerateCSR/EC256/with_SAN-8                     	       1	     89148 ns/op	   11648 B/op	     264 allocs/op
+BenchmarkGenerateCSR/EC256/no_domain-8                    	       1	     79520 ns/op	    9088 B/op	     197 allocs/op
+BenchmarkGenerateCSR/EC256/no_domain_with_SAN-8           	       1	     89910 ns/op	   11024 B/op	     242 allocs/op
+BenchmarkGenerateCSR/EC256/private_key_nil-8              	       1	      9859 ns/op	      80 B/op	       2 allocs/op
+BenchmarkPEMEncode/RSA8192-8                              	       1	8260881523 ns/op	 7955088 B/op	    7590 allocs/op
+BenchmarkPEMEncode/RSA2048-8                              	       1	  95381935 ns/op	 1480416 B/op	    4112 allocs/op
+BenchmarkPEMEncode/EC384-8                                	       1	   2800559 ns/op	 1726008 B/op	   14268 allocs/op
+BenchmarkPEMEncode/EC256-8                                	       1	     47720 ns/op	    5160 B/op	      64 allocs/op
+BenchmarkParsePEMCertificate/RSA8192-8                    	       1	42067829555 ns/op	42451064 B/op	   40093 allocs/op
+BenchmarkParsePEMCertificate/RSA2048-8                    	       1	 145540114 ns/op	 2169384 B/op	    6162 allocs/op
+BenchmarkParsePEMCertificate/EC384-8                      	       1	  12372332 ns/op	 7050216 B/op	   58482 allocs/op
+BenchmarkParsePEMCertificate/EC256-8                      	       1	    231626 ns/op	   23720 B/op	     470 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/certcrypto	160.626s

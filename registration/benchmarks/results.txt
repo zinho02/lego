@@ -1,0 +1,114 @@
+2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/registration
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkRegistrar_ResolveAccountByKey/dilithium5-8         	2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+       1	   1261046 ns/op	  240128 B/op	     588 allocs/op
+2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/dilithium5-aes-8     	2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+       1	    906659 ns/op	  225768 B/op	     571 allocs/op
+2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/falcon-1024-8        	2021/11/27 13:00:20 [INFO] acme: Trying to resolve account by key
+       1	  22147108 ns/op	  181952 B/op	     607 allocs/op
+2021/11/27 13:00:24 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-V-classic-8  	2021/11/27 13:00:29 [INFO] acme: Trying to resolve account by key
+       1	4882706993 ns/op	76473144 B/op	     604 allocs/op
+2021/11/27 13:00:35 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-V-circumzenithal-8         	2021/11/27 13:00:40 [INFO] acme: Trying to resolve account by key
+       1	5181965003 ns/op	22402056 B/op	     601 allocs/op
+2021/11/27 13:00:45 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-V-compressed-8             	2021/11/27 13:00:53 [INFO] acme: Trying to resolve account by key
+       1	7332404679 ns/op	20994944 B/op	     603 allocs/op
+2021/11/27 13:00:55 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-256s-simple-8      	2021/11/27 13:00:55 [INFO] acme: Trying to resolve account by key
+       1	 160390542 ns/op	  342872 B/op	     567 allocs/op
+2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-256f-simple-8      	2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+       1	  15829887 ns/op	  586680 B/op	     568 allocs/op
+2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-256s-robust-8      	2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+       1	 191685219 ns/op	  360992 B/op	     580 allocs/op
+2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-256f-robust-8      	2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+       1	  20274224 ns/op	  586552 B/op	     577 allocs/op
+2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-256s-simple-8      	2021/11/27 13:00:56 [INFO] acme: Trying to resolve account by key
+       1	 380193228 ns/op	  362152 B/op	     588 allocs/op
+2021/11/27 13:00:57 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-256f-simple-8      	2021/11/27 13:00:57 [INFO] acme: Trying to resolve account by key
+       1	  38425074 ns/op	  569704 B/op	     577 allocs/op
+2021/11/27 13:00:57 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-256s-robust-8      	2021/11/27 13:00:58 [INFO] acme: Trying to resolve account by key
+       1	1260567344 ns/op	  371328 B/op	     591 allocs/op
+2021/11/27 13:00:59 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-256f-robust-8      	2021/11/27 13:00:59 [INFO] acme: Trying to resolve account by key
+       1	 164683016 ns/op	  594992 B/op	     597 allocs/op
+2021/11/27 13:01:00 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-256s-simple-8    	2021/11/27 13:01:00 [INFO] acme: Trying to resolve account by key
+       1	 763374789 ns/op	  374912 B/op	     598 allocs/op
+2021/11/27 13:01:01 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-256f-simple-8    	2021/11/27 13:01:01 [INFO] acme: Trying to resolve account by key
+       1	  96107168 ns/op	  591248 B/op	     600 allocs/op
+2021/11/27 13:01:02 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-256s-robust-8    	2021/11/27 13:01:03 [INFO] acme: Trying to resolve account by key
+       1	1442796518 ns/op	  374112 B/op	     601 allocs/op
+2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-256f-robust-8    	2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+       1	 145028383 ns/op	  582784 B/op	     595 allocs/op
+2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/dilithium2-8                       	2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+       1	   1021711 ns/op	  165528 B/op	     589 allocs/op
+2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/dilithium2-aes-8                   	2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+       1	    943292 ns/op	  160376 B/op	     582 allocs/op
+2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/falcon-512-8                       	2021/11/27 13:01:04 [INFO] acme: Trying to resolve account by key
+       1	   6293650 ns/op	  127912 B/op	     584 allocs/op
+2021/11/27 13:01:05 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-I-classic-8                	2021/11/27 13:01:05 [INFO] acme: Trying to resolve account by key
+       1	 633096751 ns/op	 6602480 B/op	     612 allocs/op
+2021/11/27 13:01:06 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-I-circumzenithal-8         	2021/11/27 13:01:06 [INFO] acme: Trying to resolve account by key
+       1	 152981659 ns/op	 2636616 B/op	     602 allocs/op
+2021/11/27 13:01:06 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/rainbow-I-compressed-8             	2021/11/27 13:01:06 [INFO] acme: Trying to resolve account by key
+       1	 177841877 ns/op	 2508344 B/op	     572 allocs/op
+2021/11/27 13:01:06 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-128s-simple-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	  93167968 ns/op	  166776 B/op	     598 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-128f-simple-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	   5687812 ns/op	  260208 B/op	     602 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-128s-robust-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	 110611958 ns/op	  154840 B/op	     586 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-haraka-128f-robust-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	   6182221 ns/op	  251616 B/op	     598 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-128s-simple-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	 261710916 ns/op	  149920 B/op	     586 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-128f-simple-8      	2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+       1	  13783231 ns/op	  249168 B/op	     591 allocs/op
+2021/11/27 13:01:07 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-128s-robust-8      	2021/11/27 13:01:08 [INFO] acme: Trying to resolve account by key
+       1	 441859298 ns/op	  168608 B/op	     593 allocs/op
+2021/11/27 13:01:08 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-sha256-128f-robust-8      	2021/11/27 13:01:08 [INFO] acme: Trying to resolve account by key
+       1	  23683003 ns/op	  235864 B/op	     571 allocs/op
+2021/11/27 13:01:08 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-128s-simple-8    	2021/11/27 13:01:09 [INFO] acme: Trying to resolve account by key
+       1	 533532643 ns/op	  145656 B/op	     574 allocs/op
+2021/11/27 13:01:09 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-128f-simple-8    	2021/11/27 13:01:09 [INFO] acme: Trying to resolve account by key
+       1	  29734066 ns/op	  260544 B/op	     599 allocs/op
+2021/11/27 13:01:10 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-128s-robust-8    	2021/11/27 13:01:11 [INFO] acme: Trying to resolve account by key
+       1	 971531331 ns/op	  155400 B/op	     570 allocs/op
+2021/11/27 13:01:11 [INFO] acme: Trying to resolve account by key
+BenchmarkRegistrar_ResolveAccountByKey/sphincs+-shake256-128f-robust-8    	2021/11/27 13:01:11 [INFO] acme: Trying to resolve account by key
+       1	  52277190 ns/op	  230912 B/op	     577 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/registration	51.182s

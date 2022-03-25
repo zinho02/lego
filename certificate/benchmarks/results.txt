@@ -1,0 +1,58 @@
+2021/11/27 12:43:31 [INFO] [] Server responded with a certificate.
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/certificate
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+Benchmark_checkResponse/RSA8192-8          	2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+       1	26915898021 ns/op	27026120 B/op	   25852 allocs/op
+2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse/RSA2048-8          	2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+       1	 115659108 ns/op	 1901304 B/op	    5522 allocs/op
+2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse/EC384-8            	2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+       1	  12158010 ns/op	 3557968 B/op	   29069 allocs/op
+2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse/EC256-8            	2021/11/27 12:43:58 [INFO] [] Server responded with a certificate.
+       1	    575855 ns/op	   96440 B/op	     711 allocs/op
+2021/11/27 12:44:08 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_issuerRelUp/RSA8192-8         	2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+       1	17817698939 ns/op	18281864 B/op	   17718 allocs/op
+2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_issuerRelUp/RSA2048-8         	2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+       1	  50686882 ns/op	  703568 B/op	    2427 allocs/op
+2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_issuerRelUp/EC384-8           	2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+       1	   7135358 ns/op	 3553488 B/op	   28778 allocs/op
+2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_issuerRelUp/EC256-8           	2021/11/27 12:44:26 [INFO] [] Server responded with a certificate.
+       1	    553499 ns/op	  137272 B/op	     727 allocs/op
+2021/11/27 12:44:42 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_embeddedIssuer/RSA8192-8      	2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+       1	28438170811 ns/op	28811920 B/op	   27509 allocs/op
+2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_embeddedIssuer/RSA2048-8      	2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+       1	 182210025 ns/op	 2491976 B/op	    6956 allocs/op
+2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_embeddedIssuer/EC384-8        	2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+       1	   7775853 ns/op	 3586736 B/op	   29342 allocs/op
+2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+Benchmark_checkResponse_embeddedIssuer/EC256-8        	2021/11/27 12:45:10 [INFO] [] Server responded with a certificate.
+       1	    785467 ns/op	  104640 B/op	     718 allocs/op
+2021/11/27 12:45:31 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+Benchmark_checkResponse_alternate/RSA8192-8           	2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+       1	28834393284 ns/op	29523432 B/op	   28530 allocs/op
+2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+Benchmark_checkResponse_alternate/RSA2048-8           	2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+       1	 205674585 ns/op	 3739512 B/op	   10281 allocs/op
+2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+Benchmark_checkResponse_alternate/EC384-8             	2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+       1	  10771037 ns/op	 5508304 B/op	   44790 allocs/op
+2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+Benchmark_checkResponse_alternate/EC256-8             	2021/11/27 12:46:00 [INFO] [example.com] Server responded with a certificate for the preferred certificate chains "DST Root CA X3".
+       1	    709052 ns/op	  203440 B/op	    1220 allocs/op
+Benchmark_Get/RSA8192-8                               	       1	26479131096 ns/op	26800200 B/op	   25677 allocs/op
+Benchmark_Get/RSA2048-8                               	       1	 121422148 ns/op	 1918248 B/op	    5632 allocs/op
+Benchmark_Get/EC384-8                                 	       1	   6800268 ns/op	 3592296 B/op	   29533 allocs/op
+Benchmark_Get/EC256-8                                 	       1	    861026 ns/op	   98320 B/op	     772 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/certificate	216.295s

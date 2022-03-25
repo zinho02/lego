@@ -1,0 +1,10 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/acme/api/internal/sender
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkDo_UserAgentOnAllHTTPMethod/GET-8         	       1	    172381 ns/op	   11600 B/op	      73 allocs/op
+BenchmarkDo_UserAgentOnAllHTTPMethod/HEAD-8        	       1	    156596 ns/op	   11784 B/op	      75 allocs/op
+BenchmarkDo_UserAgentOnAllHTTPMethod/POST-8        	       1	    189448 ns/op	   21712 B/op	      90 allocs/op
+BenchmarkDo_CustomUserAgent-8                      	       1	     16210 ns/op	    1264 B/op	       9 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/acme/api/internal/sender	0.010s

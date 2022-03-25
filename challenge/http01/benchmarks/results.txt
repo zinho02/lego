@@ -1,0 +1,425 @@
+2021/11/27 12:47:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:47:47 [INFO] [localhost:23457] Served key authentication
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/challenge/http01
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkChallenge/RSA8192-8      	2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+       1	18454799487 ns/op	17560720 B/op	   16896 allocs/op
+2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallenge/RSA2048-8      	2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+       1	 171146322 ns/op	 2820648 B/op	    7707 allocs/op
+2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallenge/EC384-8        	2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+       1	   4062628 ns/op	 1774040 B/op	   14553 allocs/op
+2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:05 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallenge/EC256-8        	2021/11/27 12:48:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:48:06 [INFO] [localhost:23457] Served key authentication
+       1	    587367 ns/op	   72048 B/op	     504 allocs/op
+2021/11/27 12:48:40 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+BenchmarkChallengeInvalidPort/RSA8192-8         	2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+       1	20670090444 ns/op	19919288 B/op	   18937 allocs/op
+2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+BenchmarkChallengeInvalidPort/RSA2048-8         	2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+       1	  82098730 ns/op	 1200088 B/op	    3515 allocs/op
+2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+BenchmarkChallengeInvalidPort/EC384-8           	2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+       1	   3373047 ns/op	 1781432 B/op	   14695 allocs/op
+2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+BenchmarkChallengeInvalidPort/EC256-8           	2021/11/27 12:49:01 [INFO] [localhost:123456] acme: Trying to solve HTTP-01
+       1	    456194 ns/op	   41696 B/op	     306 allocs/op
+2021/11/27 12:49:10 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:10 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/no_proxy/RSA8192-8  	2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+       1	5739676505 ns/op	 5330040 B/op	    5509 allocs/op
+2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/no_proxy/RSA2048-8  	2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+       1	 174611443 ns/op	 2900112 B/op	    7878 allocs/op
+2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/no_proxy/EC384-8    	2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+       1	   4051303 ns/op	 1867288 B/op	   15342 allocs/op
+2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/no_proxy/EC256-8    	2021/11/27 12:49:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:16 [INFO] [localhost:23457] Served key authentication
+       1	    786048 ns/op	   66712 B/op	     531 allocs/op
+2021/11/27 12:49:37 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:37 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_string/RSA8192-8         	2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+       1	12831141679 ns/op	12231568 B/op	   11952 allocs/op
+2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_string/RSA2048-8         	2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+       1	 243642816 ns/op	 4004464 B/op	   10618 allocs/op
+2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_string/EC384-8           	2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+       1	   3554483 ns/op	 1760840 B/op	   14455 allocs/op
+2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_string/EC256-8           	2021/11/27 12:49:50 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:49:50 [INFO] [localhost:23457] Served key authentication
+       1	    908162 ns/op	   83072 B/op	     534 allocs/op
+2021/11/27 12:50:19 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:19 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_Host/RSA8192-8           	2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+       1	27340305289 ns/op	26795768 B/op	   25560 allocs/op
+2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_Host/RSA2048-8           	2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+       1	 200369348 ns/op	 3424648 B/op	    9192 allocs/op
+2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_Host/EC384-8             	2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+       1	   3747632 ns/op	 1804264 B/op	   14852 allocs/op
+2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/empty_Host/EC256-8             	2021/11/27 12:50:47 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:50:47 [INFO] [localhost:23457] Served key authentication
+       1	    857077 ns/op	   71888 B/op	     522 allocs/op
+2021/11/27 12:51:05 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:05 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_Host/RSA8192-8        	2021/11/27 12:51:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:22 [INFO] [localhost:23457] Served key authentication
+       1	17039076611 ns/op	16567664 B/op	   16042 allocs/op
+2021/11/27 12:51:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:22 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_Host/RSA2048-8        	2021/11/27 12:51:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:23 [INFO] [localhost:23457] Served key authentication
+       1	  67317214 ns/op	  826984 B/op	    2753 allocs/op
+2021/11/27 12:51:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_Host/EC384-8          	2021/11/27 12:51:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:23 [INFO] [localhost:23457] Served key authentication
+       1	   3909394 ns/op	 1784568 B/op	   14638 allocs/op
+2021/11/27 12:51:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_Host/EC256-8          	2021/11/27 12:51:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:23 [INFO] [localhost:23457] Served key authentication
+       1	    744494 ns/op	   75616 B/op	     539 allocs/op
+2021/11/27 12:51:44 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:51:44 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch/RSA8192-8        	2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	30161419544 ns/op	29771216 B/op	   28283 allocs/op
+2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch/RSA2048-8        	2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	 204614998 ns/op	 3491424 B/op	    9335 allocs/op
+2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch/EC384-8          	2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	   3753264 ns/op	 1822856 B/op	   14981 allocs/op
+2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch/EC256-8          	2021/11/27 12:52:14 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:52:14 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	    827038 ns/op	   63032 B/op	     517 allocs/op
+2021/11/27 12:53:06 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:06 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch_(ignoring_forwarding_header)/RSA8192-8 	2021/11/27 12:53:21 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:21 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	15390860118 ns/op	14906264 B/op	   14483 allocs/op
+2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch_(ignoring_forwarding_header)/RSA2048-8 	2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	  93173212 ns/op	 1442152 B/op	    4285 allocs/op
+2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch_(ignoring_forwarding_header)/EC384-8   	2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	   3950264 ns/op	 1763032 B/op	   14493 allocs/op
+2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+BenchmarkChallengeWithProxy/Host_mismatch_(ignoring_forwarding_header)/EC256-8   	2021/11/27 12:53:22 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:22 [WARN] Received request for domain example.com with method GET but the domain did not match any challenge. Please ensure your are passing the Host header properly.
+       1	    774719 ns/op	   75536 B/op	     544 allocs/op
+2021/11/27 12:53:27 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:27 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host/RSA8192-8                  	2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+       1	21612449381 ns/op	20932800 B/op	   20073 allocs/op
+2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host/RSA2048-8                  	2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+       1	 163992188 ns/op	 2742488 B/op	    7510 allocs/op
+2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host/EC384-8                    	2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+       1	   3854546 ns/op	 1846240 B/op	   15096 allocs/op
+2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host/EC256-8                    	2021/11/27 12:53:49 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:49 [INFO] [localhost:23457] Served key authentication
+       1	    527281 ns/op	   60872 B/op	     513 allocs/op
+2021/11/27 12:53:55 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:53:55 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(multiple_fields)/RSA8192-8         	2021/11/27 12:54:12 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:12 [INFO] [localhost:23457] Served key authentication
+       1	17285003350 ns/op	16770640 B/op	   16208 allocs/op
+2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(multiple_fields)/RSA2048-8         	2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+       1	  88292789 ns/op	 1354256 B/op	    4094 allocs/op
+2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(multiple_fields)/EC384-8           	2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+       1	   3855049 ns/op	 1805560 B/op	   14772 allocs/op
+2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(multiple_fields)/EC256-8           	2021/11/27 12:54:13 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:13 [INFO] [localhost:23457] Served key authentication
+       1	    734410 ns/op	   81688 B/op	     539 allocs/op
+2021/11/27 12:54:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(chain_value)/RSA8192-8             	2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+       1	30116391314 ns/op	29479144 B/op	   28039 allocs/op
+2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(chain_value)/RSA2048-8             	2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+       1	 324831670 ns/op	 5673632 B/op	   14736 allocs/op
+2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(chain_value)/EC384-8               	2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+       1	   3684853 ns/op	 1807160 B/op	   14773 allocs/op
+2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Forwarded-Host_(chain_value)/EC256-8               	2021/11/27 12:54:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:54:54 [INFO] [localhost:23457] Served key authentication
+       1	    680753 ns/op	   67600 B/op	     535 allocs/op
+2021/11/27 12:55:39 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:55:39 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch/RSA8192-8                           	2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	46797865459 ns/op	46346608 B/op	   43765 allocs/op
+2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch/RSA2048-8                           	2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	  98782569 ns/op	 1442600 B/op	    4283 allocs/op
+2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch/EC384-8                             	2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	   3872708 ns/op	 1757344 B/op	   14505 allocs/op
+2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch/EC256-8                             	2021/11/27 12:56:26 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:26 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	    750565 ns/op	   72184 B/op	     540 allocs/op
+2021/11/27 12:56:36 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:36 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch_(multiple_fields)/RSA8192-8         	2021/11/27 12:56:53 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:53 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	17175713880 ns/op	16740376 B/op	   16157 allocs/op
+2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch_(multiple_fields)/RSA2048-8         	2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	  56254632 ns/op	  775496 B/op	    2679 allocs/op
+2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch_(multiple_fields)/EC384-8           	2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	   3610956 ns/op	 1813416 B/op	   14879 allocs/op
+2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+BenchmarkChallengeWithProxy/X-Forwarded-Host_mismatch_(multiple_fields)/EC256-8           	2021/11/27 12:56:54 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:56:54 [WARN] Received request for domain localhost:23457 with method GET but the domain did not match any challenge. Please ensure your are passing the X-Forwarded-Host header properly.
+       1	    741882 ns/op	   75352 B/op	     539 allocs/op
+2021/11/27 12:57:16 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:16 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Something-Else/RSA8192-8                           	2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+       1	6524226596 ns/op	 6120616 B/op	    6291 allocs/op
+2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Something-Else/RSA2048-8                           	2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+       1	  82497909 ns/op	 1250928 B/op	    3791 allocs/op
+2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Something-Else/EC384-8                             	2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+       1	   3565513 ns/op	 1793336 B/op	   14792 allocs/op
+2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Something-Else/EC256-8                             	2021/11/27 12:57:23 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:23 [INFO] [localhost:23457] Served key authentication
+       1	    827030 ns/op	   73408 B/op	     535 allocs/op
+2021/11/27 12:57:33 [INFO] [localhost:23457] acme: Trying to solve HTTP-01
+2021/11/27 12:57:33 [INFO] [localhost:23457] Served key authentication
+BenchmarkChallengeWithProxy/matching_X-Something-Else_(multiple_fields)/RSA8192-8         	SIGQUIT: quit
+PC=0x46cda1 m=0 sigcode=0
+
+goroutine 0 [idle]:
+runtime.futex()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/sys_linux_amd64.s:519 +0x21
+runtime.futexsleep(0xc000033800, 0x0, 0x0)
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/os_linux.go:44 +0x36
+runtime.notesleep(0x9b4130)
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/lock_futex.go:160 +0x87
+runtime.mPark()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/proc.go:1441 +0x2a
+runtime.stopm()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/proc.go:2408 +0x78
+runtime.findrunnable()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/proc.go:2984 +0x865
+runtime.schedule()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/proc.go:3367 +0x239
+runtime.park_m(0xc000083d40)
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/proc.go:3516 +0x14d
+runtime.mcall()
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/asm_amd64.s:307 +0x43
+
+goroutine 1 [chan receive, 8 minutes]:
+testing.(*B).run1(0xc0000f0900)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:234 +0xbb
+testing.(*B).Run(0xc0000f06c0, {0x742647, 0x5c80e761864}, 0x756e20)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:670 +0x438
+testing.runBenchmarks.func1(0xc0000f06c0)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:544 +0x6e
+testing.(*B).runN(0xc0000f06c0, 0x1)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:192 +0x126
+testing.runBenchmarks({0x74a280, 0x2b}, 0x4, {0x961420, 0x3, 0x73d1e8})
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:553 +0x3e6
+testing.(*M).Run(0xc0000e6280)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/testing.go:1506 +0x6d6
+main.main()
+	_testmain.go:55 +0x14b
+
+goroutine 259 [chan receive]:
+testing.(*B).run1(0xc0000f0b40)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:234 +0xbb
+testing.(*B).Run(0xc0000f0900, {0x74a3d8, 0xc0000adb30}, 0xc00058c3f0)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:670 +0x438
+github.com/zinho02/lego/v4/challenge/http01.BenchmarkChallengeWithProxy(0xc0000f0900)
+	/home/zinho/go/src/github.com/zinho02/lego/challenge/http01/http_challenge_test.go:534 +0x1894
+testing.(*B).runN(0xc0000f0900, 0x1)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:192 +0x126
+testing.(*B).run1.func1()
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:232 +0x59
+created by testing.(*B).run1
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:225 +0xa5
+
+goroutine 2008 [chan receive]:
+testing.(*B).doBench(0xc0000f0d80)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:284 +0x8e
+testing.(*benchContext).processBench(0xc0000b6168, 0x230)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:583 +0x3aa
+testing.(*B).run(0xc0000f0d80)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:275 +0x67
+testing.(*B).Run(0xc0000f0b40, {0x73a8ae, 0x7574e8}, 0xc00009b6b0)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:671 +0x446
+github.com/zinho02/lego/v4/challenge/http01.benchmarkServeWithProxy(0x483077, 0xc00009b140, 0x0, 0x0)
+	/home/zinho/go/src/github.com/zinho02/lego/challenge/http01/http_challenge_test.go:612 +0x145
+github.com/zinho02/lego/v4/challenge/http01.BenchmarkChallengeWithProxy.func2(0xc0000f0b40)
+	/home/zinho/go/src/github.com/zinho02/lego/challenge/http01/http_challenge_test.go:535 +0x29
+testing.(*B).runN(0xc0000f0b40, 0x1)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:192 +0x126
+testing.(*B).run1.func1()
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:232 +0x59
+created by testing.(*B).run1
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:225 +0xa5
+
+goroutine 2088 [IO wait]:
+internal/poll.runtime_pollWait(0x7f237cdbddc8, 0x72)
+	/home/zinho/go/src/github.com/zinho02/go/src/runtime/netpoll.go:229 +0x89
+internal/poll.(*pollDesc).wait(0xc0000e6000, 0x4, 0x0)
+	/home/zinho/go/src/github.com/zinho02/go/src/internal/poll/fd_poll_runtime.go:84 +0x32
+internal/poll.(*pollDesc).waitRead(...)
+	/home/zinho/go/src/github.com/zinho02/go/src/internal/poll/fd_poll_runtime.go:89
+internal/poll.(*FD).Accept(0xc0000e6000)
+	/home/zinho/go/src/github.com/zinho02/go/src/internal/poll/fd_unix.go:402 +0x22c
+net.(*netFD).accept(0xc0000e6000)
+	/home/zinho/go/src/github.com/zinho02/go/src/net/fd_unix.go:173 +0x35
+net.(*TCPListener).accept(0xc0005ac048)
+	/home/zinho/go/src/github.com/zinho02/go/src/net/tcpsock_posix.go:140 +0x28
+net.(*TCPListener).Accept(0xc0005ac048)
+	/home/zinho/go/src/github.com/zinho02/go/src/net/tcpsock.go:262 +0x3d
+net/http.(*Server).Serve(0xc00030e000, {0x7af730, 0xc0005ac048})
+	/home/zinho/go/src/github.com/zinho02/go/src/net/http/server.go:3001 +0x394
+net/http/httptest.(*Server).goServe.func1()
+	/home/zinho/go/src/github.com/zinho02/go/src/net/http/httptest/server.go:308 +0x6a
+created by net/http/httptest.(*Server).goServe
+	/home/zinho/go/src/github.com/zinho02/go/src/net/http/httptest/server.go:306 +0x6f
+
+goroutine 2115 [runnable]:
+math/big.nat.montgomery({0xc000263200, 0x40, 0x84}, {0xc00025e000, 0x40, 0x86}, {0xc000260480, 0x40, 0x84}, {0xc0004fefc0, ...}, ...)
+	/home/zinho/go/src/github.com/zinho02/go/src/math/big/nat.go:213 +0x4ef
+math/big.nat.expNNMontgomery({0xc00025c240, 0x64, 0x44}, {0xc00025c000, 0x37, 0xc0000af830}, {0xc00024db00, 0x40, 0x9e1537}, {0xc0004fefc0, ...})
+	/home/zinho/go/src/github.com/zinho02/go/src/math/big/nat.go:1127 +0xa0f
+math/big.nat.expNN({0x0, 0x40, 0x44}, {0xc00025c000, 0x1, 0x1}, {0xc00024db00, 0x756b20, 0x84}, {0xc0004fefc0, ...})
+	/home/zinho/go/src/github.com/zinho02/go/src/math/big/nat.go:937 +0x432
+math/big.nat.probablyPrimeMillerRabin({0xc0004fefc0, 0x200, 0x44}, 0x15, 0x1)
+	/home/zinho/go/src/github.com/zinho02/go/src/math/big/prime.go:106 +0x572
+math/big.(*Int).ProbablyPrime(0xc00058e2e0, 0x14)
+	/home/zinho/go/src/github.com/zinho02/go/src/math/big/prime.go:78 +0x226
+crypto/rand.Prime({0x7a8ce0, 0xc00009a1e0}, 0x1000)
+	/home/zinho/go/src/github.com/zinho02/go/src/crypto/rand/util.go:99 +0x27e
+crypto/rsa.GenerateMultiPrimeKey({0x7a8ce0, 0xc00009a1e0}, 0x2, 0x2000)
+	/home/zinho/go/src/github.com/zinho02/go/src/crypto/rsa/rsa.go:302 +0x6a9
+crypto/rsa.GenerateKey(...)
+	/home/zinho/go/src/github.com/zinho02/go/src/crypto/rsa/rsa.go:242
+github.com/zinho02/lego/v4/certcrypto.GeneratePrivateKey({0x739e8d, 0x4})
+	/home/zinho/go/src/github.com/zinho02/lego/certcrypto/crypto.go:161 +0x2bc
+github.com/zinho02/lego/v4/challenge/http01.benchmarkServeWithProxy.func1(0xc0000f0d80)
+	/home/zinho/go/src/github.com/zinho02/lego/challenge/http01/http_challenge_test.go:656 +0x19b
+testing.(*B).runN(0xc0000f0d80, 0x1)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:192 +0x126
+testing.(*B).launch(0xc0000f0d80)
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:301 +0x85
+created by testing.(*B).doBench
+	/home/zinho/go/src/github.com/zinho02/go/src/testing/benchmark.go:283 +0x7b
+
+rax    0xca
+rbx    0x0
+rcx    0x46cda3
+rdx    0x0
+rdi    0x9b4130
+rsi    0x80
+rbp    0x7ffc4ed6b468
+rsp    0x7ffc4ed6b420
+r8     0x0
+r9     0x0
+r10    0x0
+r11    0x286
+r12    0x64
+r13    0xfa
+r14    0x9b3e40
+r15    0x0
+rip    0x46cda1
+rflags 0x286
+cs     0x33
+fs     0x0
+gs     0x0
+*** Test killed with quit: ran too long (11m0s).
+exit status 2
+FAIL	github.com/zinho02/lego/v4/challenge/http01	660.079s

@@ -1,7 +1,6 @@
 package http01
 
 import (
-	"crypto/pqc"
 	"crypto/rand"
 	"crypto/rsa"
 	"fmt"
@@ -14,50 +13,62 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/zinho02/lego/v4/acme"
 	"github.com/zinho02/lego/v4/acme/api"
+	"github.com/zinho02/lego/v4/certcrypto"
 	"github.com/zinho02/lego/v4/challenge"
 	"github.com/zinho02/lego/v4/platform/tester"
 )
 
 var table = []struct {
-	input string
+	input certcrypto.KeyType
+	name  string
+	bits  int
 }{
-	{input: "dilithium5"},
-	{input: "dilithium5-aes"},
-	{input: "falcon-1024"},
-	{input: "rainbow-V-classic"},
-	{input: "rainbow-V-circumzenithal"},
-	{input: "rainbow-V-compressed"},
-	{input: "sphincs+-haraka-256s-simple"},
-	{input: "sphincs+-haraka-256f-simple"},
-	{input: "sphincs+-haraka-256s-robust"},
-	{input: "sphincs+-haraka-256f-robust"},
-	{input: "sphincs+-sha256-256s-simple"},
-	{input: "sphincs+-sha256-256f-simple"},
-	{input: "sphincs+-sha256-256s-robust"},
-	{input: "sphincs+-sha256-256f-robust"},
-	{input: "sphincs+-shake256-256s-simple"},
-	{input: "sphincs+-shake256-256f-simple"},
-	{input: "sphincs+-shake256-256s-robust"},
-	{input: "sphincs+-shake256-256f-robust"},
-	{input: "dilithium2"},
-	{input: "dilithium2-aes"},
-	{input: "falcon-512"},
-	{input: "rainbow-I-classic"},
-	{input: "rainbow-I-circumzenithal"},
-	{input: "rainbow-I-compressed"},
-	{input: "sphincs+-haraka-128s-simple"},
-	{input: "sphincs+-haraka-128f-simple"},
-	{input: "sphincs+-haraka-128s-robust"},
-	{input: "sphincs+-haraka-128f-robust"},
-	{input: "sphincs+-sha256-128s-simple"},
-	{input: "sphincs+-sha256-128f-simple"},
-	{input: "sphincs+-sha256-128s-robust"},
-	{input: "sphincs+-sha256-128f-robust"},
-	{input: "sphincs+-shake256-128s-simple"},
-	{input: "sphincs+-shake256-128f-simple"},
-	{input: "sphincs+-shake256-128s-robust"},
-	{input: "sphincs+-shake256-128f-robust"},
+	{input: certcrypto.RSA8192, name: "RSA8192", bits: 8192},
+	{input: certcrypto.RSA2048, name: "RSA2048", bits: 2048},
+	{input: certcrypto.EC384, name: "EC384", bits: 384},
+	{input: certcrypto.EC256, name: "EC256", bits: 256},
 }
+
+// var table = []struct {
+// 	input string
+// }{
+// 	{input: "dilithium5"},
+// 	{input: "dilithium5-aes"},
+// 	{input: "falcon-1024"},
+// 	{input: "rainbow-V-classic"},
+// 	{input: "rainbow-V-circumzenithal"},
+// 	{input: "rainbow-V-compressed"},
+// 	{input: "sphincs+-haraka-256s-simple"},
+// 	{input: "sphincs+-haraka-256f-simple"},
+// 	{input: "sphincs+-haraka-256s-robust"},
+// 	{input: "sphincs+-haraka-256f-robust"},
+// 	{input: "sphincs+-sha256-256s-simple"},
+// 	{input: "sphincs+-sha256-256f-simple"},
+// 	{input: "sphincs+-sha256-256s-robust"},
+// 	{input: "sphincs+-sha256-256f-robust"},
+// 	{input: "sphincs+-shake256-256s-simple"},
+// 	{input: "sphincs+-shake256-256f-simple"},
+// 	{input: "sphincs+-shake256-256s-robust"},
+// 	{input: "sphincs+-shake256-256f-robust"},
+// 	{input: "dilithium2"},
+// 	{input: "dilithium2-aes"},
+// 	{input: "falcon-512"},
+// 	{input: "rainbow-I-classic"},
+// 	{input: "rainbow-I-circumzenithal"},
+// 	{input: "rainbow-I-compressed"},
+// 	{input: "sphincs+-haraka-128s-simple"},
+// 	{input: "sphincs+-haraka-128f-simple"},
+// 	{input: "sphincs+-haraka-128s-robust"},
+// 	{input: "sphincs+-haraka-128f-robust"},
+// 	{input: "sphincs+-sha256-128s-simple"},
+// 	{input: "sphincs+-sha256-128f-simple"},
+// 	{input: "sphincs+-sha256-128s-robust"},
+// 	{input: "sphincs+-sha256-128f-robust"},
+// 	{input: "sphincs+-shake256-128s-simple"},
+// 	{input: "sphincs+-shake256-128f-simple"},
+// 	{input: "sphincs+-shake256-128s-robust"},
+// 	{input: "sphincs+-shake256-128f-robust"},
+// }
 
 func TestChallenge(t *testing.T) {
 	_, apiURL, tearDown := tester.SetupFakeAPI()
@@ -114,7 +125,7 @@ func TestChallenge(t *testing.T) {
 
 func BenchmarkChallenge(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
 				_, apiURL, tearDown := tester.SetupFakeAPI()
 				defer tearDown()
@@ -147,7 +158,7 @@ func BenchmarkChallenge(b *testing.B) {
 					return nil
 				}
 
-				privateKey, err := pqc.GenerateKey(v.input)
+				privateKey, err := certcrypto.GeneratePrivateKey(v.input)
 				require.NoError(b, err, "Could not generate test key")
 
 				core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
@@ -202,12 +213,12 @@ func TestChallengeInvalidPort(t *testing.T) {
 
 func BenchmarkChallengeInvalidPort(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
 				_, apiURL, tearDown := tester.SetupFakeAPI()
 				defer tearDown()
 
-				privateKey, err := pqc.GenerateKey(v.input)
+				privateKey, err := certcrypto.GeneratePrivateKey(v.input)
 				require.NoError(b, err, "Could not generate test key")
 
 				core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)
@@ -598,7 +609,7 @@ func testServeWithProxy(t *testing.T, header, extra *testProxyHeader, expectErro
 
 func benchmarkServeWithProxy(b *testing.B, header, extra *testProxyHeader, expectError bool) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			b.Helper()
 
 			_, apiURL, tearDown := tester.SetupFakeAPI()
@@ -642,7 +653,7 @@ func benchmarkServeWithProxy(b *testing.B, header, extra *testProxyHeader, expec
 				return nil
 			}
 
-			privateKey, err := pqc.GenerateKey(v.input)
+			privateKey, err := certcrypto.GeneratePrivateKey(v.input)
 			require.NoError(b, err, "Could not generate test key")
 
 			core, err := api.New(http.DefaultClient, "lego-test", apiURL+"/dir", "", privateKey)

@@ -3,6 +3,8 @@ package certcrypto
 import (
 	"bytes"
 	"crypto"
+	"crypto/ecdsa"
+	"crypto/elliptic"
 	"crypto/pqc"
 	"crypto/rand"
 	"crypto/rsa"
@@ -14,45 +16,56 @@ import (
 )
 
 var table = []struct {
-	input string
+	input KeyType
+	name  string
+	bits  int
 }{
-	{input: "dilithium5"},
-	{input: "dilithium5-aes"},
-	{input: "falcon-1024"},
-	{input: "rainbow-V-classic"},
-	{input: "rainbow-V-circumzenithal"},
-	{input: "rainbow-V-compressed"},
-	{input: "sphincs+-haraka-256s-simple"},
-	{input: "sphincs+-haraka-256f-simple"},
-	{input: "sphincs+-haraka-256s-robust"},
-	{input: "sphincs+-haraka-256f-robust"},
-	{input: "sphincs+-sha256-256s-simple"},
-	{input: "sphincs+-sha256-256f-simple"},
-	{input: "sphincs+-sha256-256s-robust"},
-	{input: "sphincs+-sha256-256f-robust"},
-	{input: "sphincs+-shake256-256s-simple"},
-	{input: "sphincs+-shake256-256f-simple"},
-	{input: "sphincs+-shake256-256s-robust"},
-	{input: "sphincs+-shake256-256f-robust"},
-	{input: "dilithium2"},
-	{input: "dilithium2-aes"},
-	{input: "falcon-512"},
-	{input: "rainbow-I-classic"},
-	{input: "rainbow-I-circumzenithal"},
-	{input: "rainbow-I-compressed"},
-	{input: "sphincs+-haraka-128s-simple"},
-	{input: "sphincs+-haraka-128f-simple"},
-	{input: "sphincs+-haraka-128s-robust"},
-	{input: "sphincs+-haraka-128f-robust"},
-	{input: "sphincs+-sha256-128s-simple"},
-	{input: "sphincs+-sha256-128f-simple"},
-	{input: "sphincs+-sha256-128s-robust"},
-	{input: "sphincs+-sha256-128f-robust"},
-	{input: "sphincs+-shake256-128s-simple"},
-	{input: "sphincs+-shake256-128f-simple"},
-	{input: "sphincs+-shake256-128s-robust"},
-	{input: "sphincs+-shake256-128f-robust"},
+	{input: RSA8192, name: "RSA8192", bits: 8192},
+	{input: RSA2048, name: "RSA2048", bits: 2048},
+	{input: EC384, name: "EC384", bits: 384},
+	{input: EC256, name: "EC256", bits: 256},
 }
+
+// var table = []struct {
+// 	input string
+// }{
+// 	{input: "dilithium5"},
+// 	{input: "dilithium5-aes"},
+// 	{input: "falcon-1024"},
+// 	{input: "rainbow-V-classic"},
+// 	{input: "rainbow-V-circumzenithal"},
+// 	{input: "rainbow-V-compressed"},
+// 	{input: "sphincs+-haraka-256s-simple"},
+// 	{input: "sphincs+-haraka-256f-simple"},
+// 	{input: "sphincs+-haraka-256s-robust"},
+// 	{input: "sphincs+-haraka-256f-robust"},
+// 	{input: "sphincs+-sha256-256s-simple"},
+// 	{input: "sphincs+-sha256-256f-simple"},
+// 	{input: "sphincs+-sha256-256s-robust"},
+// 	{input: "sphincs+-sha256-256f-robust"},
+// 	{input: "sphincs+-shake256-256s-simple"},
+// 	{input: "sphincs+-shake256-256f-simple"},
+// 	{input: "sphincs+-shake256-256s-robust"},
+// 	{input: "sphincs+-shake256-256f-robust"},
+// 	{input: "dilithium2"},
+// 	{input: "dilithium2-aes"},
+// 	{input: "falcon-512"},
+// 	{input: "rainbow-I-classic"},
+// 	{input: "rainbow-I-circumzenithal"},
+// 	{input: "rainbow-I-compressed"},
+// 	{input: "sphincs+-haraka-128s-simple"},
+// 	{input: "sphincs+-haraka-128f-simple"},
+// 	{input: "sphincs+-haraka-128s-robust"},
+// 	{input: "sphincs+-haraka-128f-robust"},
+// 	{input: "sphincs+-sha256-128s-simple"},
+// 	{input: "sphincs+-sha256-128f-simple"},
+// 	{input: "sphincs+-sha256-128s-robust"},
+// 	{input: "sphincs+-sha256-128f-robust"},
+// 	{input: "sphincs+-shake256-128s-simple"},
+// 	{input: "sphincs+-shake256-128f-simple"},
+// 	{input: "sphincs+-shake256-128s-robust"},
+// 	{input: "sphincs+-shake256-128f-robust"},
+// }
 
 func TestGeneratePrivateKey(t *testing.T) {
 	key, err := GeneratePrivateKey(RSA2048)
@@ -63,9 +76,9 @@ func TestGeneratePrivateKey(t *testing.T) {
 
 func BenchmarkGeneratePrivateKey(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
-				key, err := pqc.GenerateKey(v.input)
+				key, err := GeneratePrivateKey(v.input)
 				require.NoError(b, err, "Error generating private key")
 
 				assert.NotNil(b, key)
@@ -159,9 +172,9 @@ func TestGenerateCSR(t *testing.T) {
 
 func BenchmarkGenerateCSR(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
-				privateKey, err := pqc.GenerateKey(v.input)
+				privateKey, err := GeneratePrivateKey(v.input)
 				require.NoError(b, err, "Error generating private key")
 
 				type expected struct {
@@ -257,9 +270,9 @@ func TestPEMEncode(t *testing.T) {
 
 func BenchmarkPEMEncode(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
-				key, err := pqc.GenerateKey(v.input)
+				key, err := GeneratePrivateKey(v.input)
 				require.NoError(b, err, "Error generating private key")
 
 				data := PEMEncode(key)
@@ -297,31 +310,64 @@ func TestParsePEMCertificate(t *testing.T) {
 
 func BenchmarkParsePEMCertificate(b *testing.B) {
 	for _, v := range table {
-		b.Run(v.input, func(b *testing.B) {
+		b.Run(v.name, func(b *testing.B) {
 			for n := 0; n < b.N; n++ {
-				privateKey, err := pqc.GenerateKey(v.input)
-				require.NoError(b, err, "Error generating private key")
+				if v.input == RSA8192 || v.input == RSA2048 {
+					privateKey, err := rsa.GenerateKey(rand.Reader, v.bits)
+					require.NoError(b, err, "Error generating private key")
 
-				expiration := time.Now().Add(365).Round(time.Second)
-				certBytes, err := generateDerCert(privateKey, expiration, "test.com", nil)
-				require.NoError(b, err, "Error generating cert")
+					expiration := time.Now().Add(365).Round(time.Second)
+					certBytes, err := generateDerCertRSA(privateKey, expiration, "test.com", nil)
+					require.NoError(b, err, "Error generating cert")
 
-				buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
+					buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
 
-				// Some random string should return an error.
-				cert, err := ParsePEMCertificate(buf.Bytes())
-				require.Errorf(b, err, "returned %v", cert)
+					// Some random string should return an error.
+					cert, err := ParsePEMCertificate(buf.Bytes())
+					require.Errorf(b, err, "returned %v", cert)
 
-				// A DER encoded certificate should return an error.
-				_, err = ParsePEMCertificate(certBytes)
-				require.Error(b, err, "Expected to return an error for DER certificates")
+					// A DER encoded certificate should return an error.
+					_, err = ParsePEMCertificate(certBytes)
+					require.Error(b, err, "Expected to return an error for DER certificates")
 
-				// A PEM encoded certificate should work ok.
-				pemCert := PEMEncode(DERCertificateBytes(certBytes))
-				cert, err = ParsePEMCertificate(pemCert)
-				require.NoError(b, err)
+					// A PEM encoded certificate should work ok.
+					pemCert := PEMEncode(DERCertificateBytes(certBytes))
+					cert, err = ParsePEMCertificate(pemCert)
+					require.NoError(b, err)
 
-				assert.Equal(b, expiration.UTC(), cert.NotAfter)
+					assert.Equal(b, expiration.UTC(), cert.NotAfter)
+				} else {
+					var privateKey *ecdsa.PrivateKey
+					var err error
+					if v.input == EC384 {
+						privateKey, err = ecdsa.GenerateKey(elliptic.P384(), rand.Reader)
+						require.NoError(b, err, "Error generating private key")
+					} else {
+						privateKey, err = ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+						require.NoError(b, err, "Error generating private key")
+					}
+
+					expiration := time.Now().Add(365).Round(time.Second)
+					certBytes, err := generateDerCertECDSA(privateKey, expiration, "test.com", nil)
+					require.NoError(b, err, "Error generating cert")
+
+					buf := bytes.NewBufferString("TestingRSAIsSoMuchFun")
+
+					// Some random string should return an error.
+					cert, err := ParsePEMCertificate(buf.Bytes())
+					require.Errorf(b, err, "returned %v", cert)
+
+					// A DER encoded certificate should return an error.
+					_, err = ParsePEMCertificate(certBytes)
+					require.Error(b, err, "Expected to return an error for DER certificates")
+
+					// A PEM encoded certificate should work ok.
+					pemCert := PEMEncode(DERCertificateBytes(certBytes))
+					cert, err = ParsePEMCertificate(pemCert)
+					require.NoError(b, err)
+
+					assert.Equal(b, expiration.UTC(), cert.NotAfter)
+				}
 			}
 		})
 	}

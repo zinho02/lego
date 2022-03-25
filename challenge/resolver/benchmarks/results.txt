@@ -1,0 +1,603 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/challenge/resolver
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+BenchmarkByType-8     	       1	     37911 ns/op	    1352 B/op	      47 allocs/op
+BenchmarkValidate/dilithium5/POST-unexpected-8         	       1	   1339462 ns/op	  420640 B/op	     575 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium5/POST-valid-8              	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   1291610 ns/op	  404624 B/op	     565 allocs/op
+BenchmarkValidate/dilithium5/POST-invalid-8            	       1	   1254379 ns/op	  402136 B/op	     567 allocs/op
+BenchmarkValidate/dilithium5/POST-pending-unexpected-8 	       1	   1944094 ns/op	  592744 B/op	     878 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium5/POST-pending-valid-8      	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   2026993 ns/op	  553680 B/op	     886 allocs/op
+BenchmarkValidate/dilithium5/POST-pending-invalid-8    	       1	   1818337 ns/op	  600816 B/op	     922 allocs/op
+BenchmarkValidate/dilithium5-aes/POST-unexpected-8     	       1	   1149493 ns/op	  364256 B/op	     553 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium5-aes/POST-valid-8          	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   1271090 ns/op	  423704 B/op	     589 allocs/op
+BenchmarkValidate/dilithium5-aes/POST-invalid-8        	       1	   1069744 ns/op	  411552 B/op	     585 allocs/op
+BenchmarkValidate/dilithium5-aes/POST-pending-unexpected-8         	       1	   1850323 ns/op	  599128 B/op	     907 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium5-aes/POST-pending-valid-8              	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   1636463 ns/op	  576864 B/op	     874 allocs/op
+BenchmarkValidate/dilithium5-aes/POST-pending-invalid-8            	       1	   1691756 ns/op	  559744 B/op	     908 allocs/op
+BenchmarkValidate/falcon-1024/POST-unexpected-8                    	       1	   1384247 ns/op	  277904 B/op	     561 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/falcon-1024/POST-valid-8                         	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   1320312 ns/op	  265320 B/op	     553 allocs/op
+BenchmarkValidate/falcon-1024/POST-invalid-8                       	       1	   1381572 ns/op	  279416 B/op	     580 allocs/op
+BenchmarkValidate/falcon-1024/POST-pending-unexpected-8            	       1	   2055518 ns/op	  388720 B/op	     881 allocs/op
+2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+BenchmarkValidate/falcon-1024/POST-pending-valid-8                 	2021/11/27 12:57:49 [INFO] [example.com] The server validated our request
+       1	   2067212 ns/op	  389448 B/op	     889 allocs/op
+BenchmarkValidate/falcon-1024/POST-pending-invalid-8               	       1	   2251722 ns/op	  391040 B/op	     906 allocs/op
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-V-classic/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-classic/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-classic
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-circumzenithal/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-circumzenithal
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-V-compressed/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-V-compressed/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-V-compressed
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-unexpected-8              	       1	 147796691 ns/op	  781576 B/op	     588 allocs/op
+2021/11/27 12:58:19 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-valid-8                   	2021/11/27 12:58:20 [INFO] [example.com] The server validated our request
+       1	 151323017 ns/op	  773504 B/op	     588 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-invalid-8                 	       1	 193372013 ns/op	  733328 B/op	     566 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-pending-unexpected-8      	       1	 305078476 ns/op	 1049464 B/op	     899 allocs/op
+2021/11/27 12:58:21 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-pending-valid-8           	2021/11/27 12:58:21 [INFO] [example.com] The server validated our request
+       1	 311365618 ns/op	 1083864 B/op	     889 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-simple/POST-pending-invalid-8         	       1	 294900714 ns/op	 1090224 B/op	     919 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-unexpected-8              	       1	  16497530 ns/op	 1284848 B/op	     577 allocs/op
+2021/11/27 12:58:22 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-valid-8                   	2021/11/27 12:58:22 [INFO] [example.com] The server validated our request
+       1	  16808810 ns/op	 1273792 B/op	     567 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-invalid-8                 	       1	  16566713 ns/op	 1318824 B/op	     594 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-pending-unexpected-8      	       1	  31535696 ns/op	 1820664 B/op	     892 allocs/op
+2021/11/27 12:58:22 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-pending-valid-8           	2021/11/27 12:58:22 [INFO] [example.com] The server validated our request
+       1	  30176386 ns/op	 1828936 B/op	     882 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-simple/POST-pending-invalid-8         	       1	  31328076 ns/op	 1840856 B/op	     904 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-unexpected-8              	       1	 181837333 ns/op	  776384 B/op	     571 allocs/op
+2021/11/27 12:58:23 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-valid-8                   	2021/11/27 12:58:23 [INFO] [example.com] The server validated our request
+       1	 181082250 ns/op	  771048 B/op	     581 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-invalid-8                 	       1	 181110949 ns/op	  777904 B/op	     589 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-pending-unexpected-8      	       1	 359315125 ns/op	 1080432 B/op	     876 allocs/op
+2021/11/27 12:58:24 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-pending-valid-8           	2021/11/27 12:58:25 [INFO] [example.com] The server validated our request
+       1	 366895559 ns/op	 1093712 B/op	     887 allocs/op
+BenchmarkValidate/sphincs+-haraka-256s-robust/POST-pending-invalid-8         	       1	 357759805 ns/op	 1082632 B/op	     895 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-unexpected-8              	       1	  20384571 ns/op	 1321856 B/op	     585 allocs/op
+2021/11/27 12:58:25 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-valid-8                   	2021/11/27 12:58:25 [INFO] [example.com] The server validated our request
+       1	  21175366 ns/op	 1311696 B/op	     583 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-invalid-8                 	       1	  20938941 ns/op	 1322152 B/op	     587 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-pending-unexpected-8      	       1	  40248640 ns/op	 1803824 B/op	     882 allocs/op
+2021/11/27 12:58:26 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-pending-valid-8           	2021/11/27 12:58:26 [INFO] [example.com] The server validated our request
+       1	  40082798 ns/op	 1846672 B/op	     905 allocs/op
+BenchmarkValidate/sphincs+-haraka-256f-robust/POST-pending-invalid-8         	       1	  39530432 ns/op	 1807256 B/op	     890 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-unexpected-8              	       1	 319522399 ns/op	  780520 B/op	     573 allocs/op
+2021/11/27 12:58:27 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-valid-8                   	2021/11/27 12:58:27 [INFO] [example.com] The server validated our request
+       1	 319391045 ns/op	  742400 B/op	     582 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-invalid-8                 	       1	 315127399 ns/op	  761576 B/op	     587 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-pending-unexpected-8      	       1	 625359702 ns/op	 1077040 B/op	     883 allocs/op
+2021/11/27 12:58:29 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-pending-valid-8           	2021/11/27 12:58:30 [INFO] [example.com] The server validated our request
+       1	 656755218 ns/op	 1054880 B/op	     916 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-simple/POST-pending-invalid-8         	       1	 656635856 ns/op	 1050424 B/op	     904 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-unexpected-8              	       1	  42065549 ns/op	 1306144 B/op	     589 allocs/op
+2021/11/27 12:58:32 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-valid-8                   	2021/11/27 12:58:32 [INFO] [example.com] The server validated our request
+       1	  41032814 ns/op	 1317896 B/op	     582 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-invalid-8                 	       1	  40852095 ns/op	 1317672 B/op	     581 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-pending-unexpected-8      	       1	  76512706 ns/op	 1857104 B/op	     912 allocs/op
+2021/11/27 12:58:32 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-pending-valid-8           	2021/11/27 12:58:32 [INFO] [example.com] The server validated our request
+       1	  76849576 ns/op	 1813488 B/op	     874 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-simple/POST-pending-invalid-8         	       1	  76672419 ns/op	 1851464 B/op	     911 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-unexpected-8              	       1	1120088534 ns/op	  736648 B/op	     587 allocs/op
+2021/11/27 12:58:36 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-valid-8                   	2021/11/27 12:58:37 [INFO] [example.com] The server validated our request
+       1	1163179646 ns/op	  739256 B/op	     566 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-invalid-8                 	       1	1099510313 ns/op	  778080 B/op	     591 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-pending-unexpected-8      	       1	2246597938 ns/op	 1089096 B/op	     906 allocs/op
+2021/11/27 12:58:46 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-pending-valid-8           	2021/11/27 12:58:48 [INFO] [example.com] The server validated our request
+       1	2195186874 ns/op	 1078568 B/op	     902 allocs/op
+BenchmarkValidate/sphincs+-sha256-256s-robust/POST-pending-invalid-8         	       1	2238167984 ns/op	 1077832 B/op	     899 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-unexpected-8              	       1	 142647617 ns/op	 1318152 B/op	     587 allocs/op
+2021/11/27 12:58:53 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-valid-8                   	2021/11/27 12:58:53 [INFO] [example.com] The server validated our request
+       1	 137097115 ns/op	 1300208 B/op	     562 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-invalid-8                 	       1	 155026678 ns/op	 1317776 B/op	     582 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-pending-unexpected-8      	       1	 255967664 ns/op	 1808336 B/op	     886 allocs/op
+2021/11/27 12:58:54 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-pending-valid-8           	2021/11/27 12:58:54 [INFO] [example.com] The server validated our request
+       1	 256191982 ns/op	 1833256 B/op	     888 allocs/op
+BenchmarkValidate/sphincs+-sha256-256f-robust/POST-pending-invalid-8         	       1	 256280799 ns/op	 1827640 B/op	     893 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-unexpected-8            	       1	 710230784 ns/op	  781600 B/op	     588 allocs/op
+2021/11/27 12:58:57 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-valid-8                 	2021/11/27 12:58:58 [INFO] [example.com] The server validated our request
+       1	 746051756 ns/op	  780448 B/op	     573 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-invalid-8               	       1	 712784228 ns/op	  779512 B/op	     584 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-pending-unexpected-8    	       1	1434437956 ns/op	 1088064 B/op	     894 allocs/op
+2021/11/27 12:59:03 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-pending-valid-8         	2021/11/27 12:59:05 [INFO] [example.com] The server validated our request
+       1	1491274703 ns/op	 1068904 B/op	     879 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-simple/POST-pending-invalid-8       	       1	1449857439 ns/op	 1028248 B/op	     878 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-unexpected-8            	       1	  82852526 ns/op	 1319128 B/op	     574 allocs/op
+2021/11/27 12:59:08 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-valid-8                 	2021/11/27 12:59:08 [INFO] [example.com] The server validated our request
+       1	  82544857 ns/op	 1269072 B/op	     586 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-invalid-8               	       1	  88378599 ns/op	 1311576 B/op	     578 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-pending-unexpected-8    	       1	 160357800 ns/op	 1815736 B/op	     882 allocs/op
+2021/11/27 12:59:09 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-pending-valid-8         	2021/11/27 12:59:09 [INFO] [example.com] The server validated our request
+       1	 161912346 ns/op	 1789600 B/op	     875 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-simple/POST-pending-invalid-8       	       1	 160178033 ns/op	 1798952 B/op	     891 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-unexpected-8            	       1	1274967761 ns/op	  735256 B/op	     567 allocs/op
+2021/11/27 12:59:13 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-valid-8                 	2021/11/27 12:59:14 [INFO] [example.com] The server validated our request
+       1	1247486297 ns/op	  741080 B/op	     564 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-invalid-8               	       1	1227553257 ns/op	  771320 B/op	     582 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-pending-unexpected-8    	       1	2460929705 ns/op	 1055176 B/op	     892 allocs/op
+2021/11/27 12:59:24 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-pending-valid-8         	2021/11/27 12:59:27 [INFO] [example.com] The server validated our request
+       1	2517278104 ns/op	 1029776 B/op	     874 allocs/op
+BenchmarkValidate/sphincs+-shake256-256s-robust/POST-pending-invalid-8       	       1	2571555306 ns/op	 1076792 B/op	     901 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-unexpected-8            	       1	 160240247 ns/op	 1321872 B/op	     585 allocs/op
+2021/11/27 12:59:33 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-valid-8                 	2021/11/27 12:59:33 [INFO] [example.com] The server validated our request
+       1	 152660252 ns/op	 1282688 B/op	     579 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-invalid-8               	       1	 147636926 ns/op	 1320880 B/op	     596 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-pending-unexpected-8    	       1	 289708622 ns/op	 1795152 B/op	     878 allocs/op
+2021/11/27 12:59:34 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-pending-valid-8         	2021/11/27 12:59:34 [INFO] [example.com] The server validated our request
+       1	 324433066 ns/op	 1842488 B/op	     878 allocs/op
+BenchmarkValidate/sphincs+-shake256-256f-robust/POST-pending-invalid-8       	       1	 303627283 ns/op	 1847864 B/op	     915 allocs/op
+BenchmarkValidate/dilithium2/POST-unexpected-8                               	       1	    875225 ns/op	  272792 B/op	     583 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium2/POST-valid-8                                    	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	    834248 ns/op	  230968 B/op	     562 allocs/op
+BenchmarkValidate/dilithium2/POST-invalid-8                                  	       1	    883401 ns/op	  265104 B/op	     586 allocs/op
+BenchmarkValidate/dilithium2/POST-pending-unexpected-8                       	       1	   1405651 ns/op	  346664 B/op	     885 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium2/POST-pending-valid-8                            	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	   1323448 ns/op	  383472 B/op	     904 allocs/op
+BenchmarkValidate/dilithium2/POST-pending-invalid-8                          	       1	   1434540 ns/op	  377760 B/op	     910 allocs/op
+BenchmarkValidate/dilithium2-aes/POST-unexpected-8                           	       1	    580154 ns/op	  261744 B/op	     568 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium2-aes/POST-valid-8                                	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	    810644 ns/op	  273576 B/op	     587 allocs/op
+BenchmarkValidate/dilithium2-aes/POST-invalid-8                              	       1	    784530 ns/op	  271080 B/op	     583 allocs/op
+BenchmarkValidate/dilithium2-aes/POST-pending-unexpected-8                   	       1	   1395031 ns/op	  384752 B/op	     901 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/dilithium2-aes/POST-pending-valid-8                        	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	   1241890 ns/op	  320272 B/op	     879 allocs/op
+BenchmarkValidate/dilithium2-aes/POST-pending-invalid-8                      	       1	   1518217 ns/op	  369576 B/op	     903 allocs/op
+BenchmarkValidate/falcon-512/POST-unexpected-8                               	       1	    814071 ns/op	  192328 B/op	     576 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/falcon-512/POST-valid-8                                    	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	    776701 ns/op	  183296 B/op	     562 allocs/op
+BenchmarkValidate/falcon-512/POST-invalid-8                                  	       1	    743008 ns/op	  183720 B/op	     566 allocs/op
+BenchmarkValidate/falcon-512/POST-pending-unexpected-8                       	       1	   1038139 ns/op	  249888 B/op	     870 allocs/op
+2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+BenchmarkValidate/falcon-512/POST-pending-valid-8                            	2021/11/27 12:59:35 [INFO] [example.com] The server validated our request
+       1	   1149742 ns/op	  249960 B/op	     869 allocs/op
+BenchmarkValidate/falcon-512/POST-pending-invalid-8                          	       1	   1225780 ns/op	  251776 B/op	     892 allocs/op
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-I-classic/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-classic/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-classic
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-circumzenithal/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-circumzenithal
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-valid
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-pending-unexpected
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-pending-unexpected
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-pending-valid
+    solver_manager_test.go:320: 
+        	Error Trace:	solver_manager_test.go:320
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	Received unexpected error:
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-pending-valid
+--- FAIL: BenchmarkValidate/rainbow-I-compressed/POST-pending-invalid
+    solver_manager_test.go:323: 
+        	Error Trace:	solver_manager_test.go:323
+        	            				benchmark.go:192
+        	            				benchmark.go:232
+        	            				asm_amd64.s:1581
+        	Error:      	
+        	Test:       	BenchmarkValidate/rainbow-I-compressed/POST-pending-invalid
+--- FAIL: BenchmarkValidate/rainbow-I-compressed
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-unexpected-8              	       1	  82254947 ns/op	  295568 B/op	     584 allocs/op
+2021/11/27 12:59:36 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-valid-8                   	2021/11/27 12:59:36 [INFO] [example.com] The server validated our request
+       1	  84139768 ns/op	  283232 B/op	     578 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-invalid-8                 	       1	  82595198 ns/op	  257288 B/op	     586 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-pending-unexpected-8      	       1	 174379050 ns/op	  357640 B/op	     878 allocs/op
+2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-pending-valid-8           	2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+       1	 169576452 ns/op	  408600 B/op	     909 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-simple/POST-pending-invalid-8         	       1	 166053150 ns/op	  390200 B/op	     876 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-unexpected-8              	       1	   5859551 ns/op	  513000 B/op	     582 allocs/op
+2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-valid-8                   	2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+       1	   5791293 ns/op	  528944 B/op	     579 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-invalid-8                 	       1	   6009937 ns/op	  529800 B/op	     588 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-pending-unexpected-8      	       1	  11635872 ns/op	  699768 B/op	     868 allocs/op
+2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-pending-valid-8           	2021/11/27 12:59:37 [INFO] [example.com] The server validated our request
+       1	  10936201 ns/op	  704216 B/op	     905 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-simple/POST-pending-invalid-8         	       1	  10898718 ns/op	  683624 B/op	     892 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-unexpected-8              	       1	  95182360 ns/op	  284904 B/op	     574 allocs/op
+2021/11/27 12:59:38 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-valid-8                   	2021/11/27 12:59:38 [INFO] [example.com] The server validated our request
+       1	  99574859 ns/op	  250984 B/op	     582 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-invalid-8                 	       1	  96952035 ns/op	  286416 B/op	     590 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-pending-unexpected-8      	       1	 194517269 ns/op	  404576 B/op	     884 allocs/op
+2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-pending-valid-8           	2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+       1	 191585497 ns/op	  390752 B/op	     882 allocs/op
+BenchmarkValidate/sphincs+-haraka-128s-robust/POST-pending-invalid-8         	       1	 208329965 ns/op	  392216 B/op	     877 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-unexpected-8              	       1	   6508409 ns/op	  526200 B/op	     568 allocs/op
+2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-valid-8                   	2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+       1	   6305429 ns/op	  529816 B/op	     590 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-invalid-8                 	       1	   6373702 ns/op	  529624 B/op	     587 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-pending-unexpected-8      	       1	  11968947 ns/op	  702384 B/op	     909 allocs/op
+2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-pending-valid-8           	2021/11/27 12:59:39 [INFO] [example.com] The server validated our request
+       1	  11653003 ns/op	  720368 B/op	     896 allocs/op
+BenchmarkValidate/sphincs+-haraka-128f-robust/POST-pending-invalid-8         	       1	  11616486 ns/op	  709584 B/op	     904 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-unexpected-8              	       1	 213966249 ns/op	  292784 B/op	     568 allocs/op
+2021/11/27 12:59:40 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-valid-8                   	2021/11/27 12:59:40 [INFO] [example.com] The server validated our request
+       1	 215296003 ns/op	  284312 B/op	     566 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-invalid-8                 	       1	 216909114 ns/op	  282384 B/op	     563 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-pending-unexpected-8      	       1	 426581900 ns/op	  357184 B/op	     875 allocs/op
+2021/11/27 12:59:42 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-pending-valid-8           	2021/11/27 12:59:43 [INFO] [example.com] The server validated our request
+       1	 425511094 ns/op	  375536 B/op	     889 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-simple/POST-pending-invalid-8         	       1	 427117614 ns/op	  387128 B/op	     887 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-unexpected-8              	       1	  16388580 ns/op	  529008 B/op	     580 allocs/op
+2021/11/27 12:59:43 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-valid-8                   	2021/11/27 12:59:43 [INFO] [example.com] The server validated our request
+       1	  15612900 ns/op	  507944 B/op	     565 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-invalid-8                 	       1	  21297557 ns/op	  524296 B/op	     571 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-pending-unexpected-8      	       1	  29021666 ns/op	  697824 B/op	     865 allocs/op
+2021/11/27 12:59:44 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-pending-valid-8           	2021/11/27 12:59:44 [INFO] [example.com] The server validated our request
+       1	  28719668 ns/op	  697752 B/op	     865 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-simple/POST-pending-invalid-8         	       1	  31502529 ns/op	  661992 B/op	     873 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-unexpected-8              	       1	 388143875 ns/op	  284528 B/op	     570 allocs/op
+2021/11/27 12:59:45 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-valid-8                   	2021/11/27 12:59:45 [INFO] [example.com] The server validated our request
+       1	 391262427 ns/op	  247968 B/op	     572 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-invalid-8                 	       1	 387032167 ns/op	  276808 B/op	     570 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-pending-unexpected-8      	       1	 777291033 ns/op	  393816 B/op	     894 allocs/op
+2021/11/27 12:59:48 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-pending-valid-8           	2021/11/27 12:59:49 [INFO] [example.com] The server validated our request
+       1	 790224008 ns/op	  402320 B/op	     880 allocs/op
+BenchmarkValidate/sphincs+-sha256-128s-robust/POST-pending-invalid-8         	       1	 773776745 ns/op	  382816 B/op	     908 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-unexpected-8              	       1	  27456020 ns/op	  518000 B/op	     567 allocs/op
+2021/11/27 12:59:51 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-valid-8                   	2021/11/27 12:59:51 [INFO] [example.com] The server validated our request
+       1	  27426346 ns/op	  521624 B/op	     588 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-invalid-8                 	       1	  27267189 ns/op	  522648 B/op	     596 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-pending-unexpected-8      	       1	  49761505 ns/op	  709328 B/op	     887 allocs/op
+2021/11/27 12:59:51 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-pending-valid-8           	2021/11/27 12:59:51 [INFO] [example.com] The server validated our request
+       1	  49891236 ns/op	  699896 B/op	     889 allocs/op
+BenchmarkValidate/sphincs+-sha256-128f-robust/POST-pending-invalid-8         	       1	  50445673 ns/op	  714320 B/op	     909 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-unexpected-8            	       1	 465759156 ns/op	  289808 B/op	     556 allocs/op
+2021/11/27 12:59:53 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-valid-8                 	2021/11/27 12:59:53 [INFO] [example.com] The server validated our request
+       1	 471504462 ns/op	  295832 B/op	     584 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-invalid-8               	       1	 456354182 ns/op	  256256 B/op	     570 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-pending-unexpected-8    	       1	 930627750 ns/op	  357792 B/op	     878 allocs/op
+2021/11/27 12:59:57 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-pending-valid-8         	2021/11/27 12:59:58 [INFO] [example.com] The server validated our request
+       1	 949087502 ns/op	  373720 B/op	     865 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-simple/POST-pending-invalid-8       	       1	 926140156 ns/op	  401736 B/op	     888 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-unexpected-8            	       1	  30777238 ns/op	  489488 B/op	     567 allocs/op
+2021/11/27 13:00:00 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-valid-8                 	2021/11/27 13:00:00 [INFO] [example.com] The server validated our request
+       1	  30330162 ns/op	  521096 B/op	     580 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-invalid-8               	       1	  30229034 ns/op	  492320 B/op	     578 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-pending-unexpected-8    	       1	  72521612 ns/op	  710256 B/op	     894 allocs/op
+2021/11/27 13:00:00 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-pending-valid-8         	2021/11/27 13:00:00 [INFO] [example.com] The server validated our request
+       1	  57380471 ns/op	  668328 B/op	     875 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-simple/POST-pending-invalid-8       	       1	  57025514 ns/op	  687152 B/op	     885 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-unexpected-8            	       1	 882048250 ns/op	  250064 B/op	     572 allocs/op
+2021/11/27 13:00:03 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-valid-8                 	2021/11/27 13:00:04 [INFO] [example.com] The server validated our request
+       1	 859428090 ns/op	  295832 B/op	     580 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-invalid-8               	       1	 891760053 ns/op	  241656 B/op	     564 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-pending-unexpected-8    	       1	1709996757 ns/op	  388328 B/op	     901 allocs/op
+2021/11/27 13:00:11 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-pending-valid-8         	2021/11/27 13:00:13 [INFO] [example.com] The server validated our request
+       1	1706807116 ns/op	  390120 B/op	     894 allocs/op
+BenchmarkValidate/sphincs+-shake256-128s-robust/POST-pending-invalid-8       	       1	1703247626 ns/op	  374616 B/op	     878 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-unexpected-8            	       1	  55991449 ns/op	  490440 B/op	     580 allocs/op
+2021/11/27 13:00:16 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-valid-8                 	2021/11/27 13:00:16 [INFO] [example.com] The server validated our request
+       1	  54440093 ns/op	  470144 B/op	     550 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-invalid-8               	       1	  54742623 ns/op	  510648 B/op	     571 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-pending-unexpected-8    	       1	 167432150 ns/op	  698144 B/op	     868 allocs/op
+2021/11/27 13:00:17 [INFO] [example.com] The server validated our request
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-pending-valid-8         	2021/11/27 13:00:17 [INFO] [example.com] The server validated our request
+       1	 105184860 ns/op	  732192 B/op	     912 allocs/op
+BenchmarkValidate/sphincs+-shake256-128f-robust/POST-pending-invalid-8       	       1	 104166943 ns/op	  722064 B/op	     909 allocs/op
+--- FAIL: BenchmarkValidate
+FAIL
+exit status 1
+FAIL	github.com/zinho02/lego/v4/challenge/resolver	148.063s

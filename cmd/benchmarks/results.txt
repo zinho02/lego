@@ -1,0 +1,20 @@
+goos: linux
+goarch: amd64
+pkg: github.com/zinho02/lego/v4/cmd
+cpu: AMD Ryzen 7 3800X 8-Core Processor             
+Benchmark_merge/all_empty-8         	       1	     14287 ns/op	      48 B/op	       2 allocs/op
+Benchmark_merge/next_empty-8        	       1	     10820 ns/op	     144 B/op	       8 allocs/op
+Benchmark_merge/prev_empty-8        	       1	     12473 ns/op	     256 B/op	      11 allocs/op
+Benchmark_merge/merge_append-8      	       1	      9528 ns/op	     272 B/op	      11 allocs/op
+Benchmark_merge/merge_same-8        	       1	      9067 ns/op	     144 B/op	       8 allocs/op
+Benchmark_needRenewal/30_days,_NotAfter_now-8         	       1	      5931 ns/op	       0 B/op	       0 allocs/op
+2021/11/27 13:00:20 [foo.com] The certificate expires in 31 days, the number of days defined to perform the renewal is 30: no renewal.
+Benchmark_needRenewal/30_days,_NotAfter_31_days-8     	2021/11/27 13:00:20 [foo.com] The certificate expires in 31 days, the number of days defined to perform the renewal is 30: no renewal.
+       1	     36408 ns/op	    1224 B/op	       5 allocs/op
+Benchmark_needRenewal/30_days,_NotAfter_30_days-8     	       1	      7484 ns/op	       0 B/op	       0 allocs/op
+2021/11/27 13:00:20 [foo.com] The certificate expires in 29 days, the number of days defined to perform the renewal is 0: no renewal.
+Benchmark_needRenewal/0_days,_NotAfter_30_days:_only_the_day_of_the_expiration-8         	2021/11/27 13:00:20 [foo.com] The certificate expires in 29 days, the number of days defined to perform the renewal is 0: no renewal.
+       1	     28192 ns/op	    1832 B/op	      10 allocs/op
+Benchmark_needRenewal/-1_days,_NotAfter_30_days:_always_renew-8                          	       1	      5931 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/zinho02/lego/v4/cmd	0.026s
