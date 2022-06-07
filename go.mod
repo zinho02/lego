@@ -43,6 +43,7 @@ require (
 	github.com/nrdcg/namesilo v0.2.1
 	github.com/nrdcg/porkbun v0.1.1
 	github.com/onsi/gomega v1.14.0 // indirect
+	github.com/open-quantum-safe/liboqs-go v0.0.0-20220105163900-e0f759d70fa5 // indirect
 	github.com/oracle/oci-go-sdk v24.3.0+incompatible
 	github.com/ovh/go-ovh v1.1.0
 	github.com/pquerna/otp v1.3.0
